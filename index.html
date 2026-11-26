@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>글로우케이션 + 슬립케이션 — 피부 관리부터 깊은 숙면까지</title>
+<meta name="description" content="K-뷰티·스파 관리부터 숙면·딥슬립 스테이까지, 회복 목적에 맞는 웰니스 동선과 검증된 회복 숙소를 한 번에 비교하는 1차 MVP 확장 시안">
+<style>
+  :root{
+    --ivory:#FAF8F3;
+    --paper:#FFFDF9;
+    --ink:#17202C;
+    --ink-soft:#39424F;
+    --muted:#6E767F;
+    --line:#E5DFD3;
+    --line-soft:#EFEAE0;
+    --sage:#7B8E72;
+    --sage-dark:#586A50;
+    --sage-tint:#EEF1E7;
+    --gold:#B1925F;
+    --gold-tint:#F6F0E3;
+    --warn:#9C5A3C;
+    --warn-tint:#FBF1EA;
+    --night:#2B3050;
+    --night-2:#454C79;
+    --night-tint:#ECEDF6;
+    --night-line:#D8DAE9;
+    --teal:#4E7C72;
+    --teal-tint:#E6F0ED;
+    --spa:#8A6A47;
+    --spa-2:#A9835B;
+    --spa-tint:#F5EEE3;
+    --spa-line:#E2D2BC;
+    --radius:18px;
+    --shadow:0 1px 2px rgba(23,32,44,.04), 0 12px 30px rgba(23,32,44,.06);
+    --shadow-lift:0 2px 4px rgba(23,32,44,.05), 0 22px 44px rgba(23,32,44,.10);
+    --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Noto Sans CJK KR",system-ui,sans-serif;
+    --serif:Georgia,"Times New Roman","Nanum Myeongjo","Noto Serif KR","Noto Serif CJK KR","Apple SD Gothic Neo",serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.65;
+    letter-spacing:-.011em;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+    -webkit-font-smoothing:antialiased;
+  }
+  body.is-locked{overflow:hidden}
+  h1,h2,h3,h4,p,ul,ol,figure{margin:0}
+  ul,ol{padding:0;list-style:none}
+  button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+  a{color:inherit}
+  .wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{
+    font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:currentColor;display:block}
+  .nw{white-space:nowrap}
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;border:0;
+  }
+
+  /* ---------- header ---------- */
+  .site-header{
+    border-bottom:1px solid var(--line-soft);
+    background:rgba(250,248,243,.86);
+    backdrop-filter:saturate(140%) blur(10px);
+    -webkit-backdrop-filter:saturate(140%) blur(10px);
+  }
+  .site-header .wrap{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    min-height:70px;padding-top:12px;padding-bottom:12px;
+  }
+  .brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .brand-mark{
+    font-family:var(--serif);font-size:21px;font-weight:700;letter-spacing:-.01em;
+  }
+  .brand-mark em{font-style:normal;color:var(--sage-dark)}
+  .brand-mark i{font-style:normal;color:var(--night-2)}
+  .brand-sub{
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  }
+  .header-nav{display:flex;align-items:center;gap:22px;font-size:13px;color:var(--ink-soft)}
+  .header-nav a{text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;white-space:nowrap}
+  .header-nav a:hover{border-color:var(--gold)}
+  .beta-tag{
+    font-size:10.5px;font-weight:700;letter-spacing:.12em;
+    border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--muted);
+    background:var(--paper);white-space:nowrap;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{padding:60px 0 42px;position:relative;overflow:hidden}
+  .hero::after{
+    content:"";position:absolute;right:-140px;top:-60px;width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(177,146,95,.16), rgba(177,146,95,0) 68%);
+    pointer-events:none;
+  }
+  .hero::before{
+    content:"";position:absolute;left:-120px;bottom:-180px;width:460px;height:460px;border-radius:50%;
+    background:radial-gradient(circle at 60% 40%, rgba(69,76,121,.14), rgba(69,76,121,0) 70%);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:860px;position:relative;z-index:1}
+  .hero h1{
+    font-family:var(--serif);
+    font-size:clamp(28px,4.4vw,52px);
+    line-height:1.24;
+    letter-spacing:-.028em;
+    margin:20px 0 0;
+    font-weight:700;
+  }
+  .hero h1 .hl{
+    background:linear-gradient(180deg, rgba(238,241,231,0) 58%, rgba(123,142,114,.28) 58%);
+    padding:0 2px;
+    -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  }
+  .hero h1 .hl.night{
+    background:linear-gradient(180deg, rgba(236,237,246,0) 58%, rgba(69,76,121,.26) 58%);
+    -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  }
+  .hero h1 .dash{color:var(--gold);font-weight:400}
+  .hero-sub{
+    margin-top:20px;font-size:clamp(14.5px,1.5vw,17px);color:var(--ink-soft);
+    max-width:700px;
+  }
+  .hero-stats{
+    display:grid;grid-template-columns:repeat(4,1fr);margin-top:32px;
+    border-top:1px solid var(--line);max-width:800px;
+  }
+  .hero-stat{padding:16px 18px 0 0;border-right:1px solid var(--line-soft)}
+  .hero-stat:last-child{border-right:0;padding-right:0}
+  .hero-stat b{display:block;font-family:var(--serif);font-size:22px;letter-spacing:-.01em}
+  .hero-stat b i{font-style:normal;font-size:13px;color:var(--muted);margin-left:3px;font-family:var(--sans)}
+  .hero-stat span{font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+
+  /* ---------- filter panel ---------- */
+  .filter-panel{
+    background:var(--paper);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:14px 0 14px;
+  }
+  @media (min-width:960px){
+    .filter-panel{position:sticky;top:0;z-index:30;box-shadow:0 6px 18px rgba(23,32,44,.05)}
+  }
+  .filter-group{display:flex;align-items:flex-start;gap:18px;padding:7px 0}
+  .filter-group + .filter-group{border-top:1px dashed var(--line-soft)}
+  .filter-label{
+    flex:0 0 112px;font-size:11.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);
+    padding-top:9px;text-transform:uppercase;display:flex;gap:7px;align-items:baseline;
+  }
+  .filter-label i{font-style:normal;color:var(--gold);font-family:var(--serif);font-size:13px}
+  .filter-opts{display:flex;flex-wrap:wrap;gap:8px;flex:1;min-width:0}
+  .chip{
+    border:1px solid var(--line);background:var(--paper);border-radius:999px;
+    padding:8px 14px;font-size:13.5px;color:var(--ink-soft);line-height:1.2;
+    transition:background .16s,border-color .16s,color .16s,transform .16s;
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .chip .chip-note{opacity:.62;font-size:11px}
+  #purpose-tabs{gap:6px}
+  #purpose-tabs .chip{padding:7px 12px}
+  #purpose-tabs .chip-note{font-size:10.5px}
+  .chip:hover{border-color:#CFC6B4;transform:translateY(-1px)}
+  .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#FCFAF4}
+  .chip.soft[aria-pressed="true"]{background:var(--sage-tint);border-color:var(--sage);color:var(--sage-dark);font-weight:600}
+  .chip .tick{font-size:11px;opacity:0;width:0;transition:opacity .16s}
+  .chip.soft[aria-pressed="true"] .tick{opacity:1;width:11px}
+  .chip:focus-visible,.card:focus-visible,.cta:focus-visible,.modal-close:focus-visible,.theme-tab:focus-visible{
+    outline:2px solid var(--gold);outline-offset:3px;
+  }
+
+  /* theme band (1단 필터) */
+  .theme-band{
+    padding:22px 0 20px;
+    border-top:1px solid var(--line);
+    background:linear-gradient(180deg,#F6F4EE 0%,var(--ivory) 100%);
+  }
+  .theme-band-top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:12px;flex-wrap:wrap}
+  .theme-band-top .filter-label{flex:0 0 auto;padding-top:0;font-size:11.5px}
+  .theme-hint{font-size:11.5px;color:var(--muted);line-height:1.6;max-width:640px;margin-left:auto;text-align:right}
+  .theme-hint b{font-weight:700;color:var(--ink-soft)}
+  .theme-hint .d-glow{color:var(--sage-dark);font-weight:700}
+  .theme-hint .d-sleep{color:var(--night-2);font-weight:700}
+  .theme-hint .d-spa{color:var(--spa);font-weight:700}
+  .theme-opts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .theme-tab{
+    display:flex;align-items:center;gap:11px;min-width:0;
+    border:1px solid var(--line);background:var(--paper);border-radius:14px;
+    padding:12px 14px;text-align:left;
+    transition:background .16s,border-color .16s,color .16s,box-shadow .16s,transform .16s;
+  }
+  .theme-tab:hover{border-color:#CFC6B4;transform:translateY(-1px)}
+  .theme-tab .tt-ico{font-size:21px;line-height:1;flex:none}
+  .theme-tab .tt-body{display:flex;flex-direction:column;min-width:0;flex:1}
+  .theme-tab .tt-body b{font-size:14.5px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:5px;white-space:nowrap}
+  .theme-tab .tt-body em{
+    font-style:normal;font-size:11px;color:var(--muted);margin-top:2px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .theme-tab .tt-count{
+    font-family:var(--mono);font-size:11.5px;line-height:1;padding:5px 7px;border-radius:7px;
+    background:var(--ivory);border:1px solid var(--line-soft);color:var(--muted);flex:none;
+  }
+  .theme-tab[aria-pressed="true"]{color:#FCFAF4;box-shadow:0 8px 20px rgba(23,32,44,.14)}
+  .theme-tab[data-theme="all"][aria-pressed="true"]{background:var(--ink);border-color:var(--ink)}
+  .theme-tab[data-theme="glow"][aria-pressed="true"]{background:var(--sage-dark);border-color:var(--sage-dark)}
+  .theme-tab[data-theme="sleep"][aria-pressed="true"]{background:var(--night);border-color:var(--night)}
+  .theme-tab[data-theme="spa"][aria-pressed="true"]{background:var(--spa);border-color:var(--spa)}
+  .theme-tab[aria-pressed="true"] .tt-body em{color:rgba(255,255,255,.76)}
+  .theme-tab[aria-pressed="true"] .tt-count{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.26);color:#fff}
+
+  .filter-status{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
+    margin-top:12px;padding-top:12px;border-top:1px solid var(--line);
+  }
+  .result-count{font-size:13.5px;color:var(--ink-soft)}
+  .result-count b{font-family:var(--serif);font-size:19px;color:var(--ink);margin-right:2px}
+  .active-tags{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;color:var(--muted)}
+  .active-tags span{background:var(--ivory);border:1px solid var(--line-soft);border-radius:6px;padding:3px 8px}
+  .reset-btn{
+    font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--line);
+    padding-bottom:1px;transition:color .16s,border-color .16s;
+  }
+  .reset-btn:hover{color:var(--ink);border-color:var(--ink)}
+
+  /* ---------- course grid ---------- */
+  .results{padding-top:36px;padding-bottom:20px}
+  .results-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:22px;flex-wrap:wrap}
+  .results-head h2{font-family:var(--serif);font-size:clamp(22px,2.4vw,28px);letter-spacing:-.02em;font-weight:700}
+  .results-head p{font-size:13px;color:var(--muted);max-width:520px}
+  .grid{
+    display:grid;gap:24px;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  }
+  @media (max-width:640px){.grid{grid-template-columns:1fr;gap:18px}}
+
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;text-align:left;display:flex;flex-direction:column;
+    box-shadow:var(--shadow);transition:transform .22s ease,box-shadow .22s ease,border-color .22s;
+    width:100%;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift);border-color:#D8CFBE}
+  .card-visual{
+    position:relative;height:136px;padding:15px 18px;display:flex;flex-direction:column;justify-content:space-between;
+    border-bottom:1px solid rgba(23,32,44,.06);
+  }
+  .card-visual::before{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(23,32,44,.10) 1px, transparent 1px);
+    background-size:13px 13px;opacity:.35;
+  }
+  .card[data-area="myeongdong"] .card-visual{background:linear-gradient(135deg,#EDF0E5 0%,#D9E2CE 100%)}
+  .card[data-area="gangnam"] .card-visual{background:linear-gradient(135deg,#F3EBDE 0%,#E0D2BC 100%)}
+  .card[data-area="hongdae"] .card-visual{background:linear-gradient(135deg,#EDEDE7 0%,#D5D8CC 100%)}
+  .card[data-area="busan"] .card-visual{background:linear-gradient(135deg,#E7EFF1 0%,#CADCE1 100%)}
+  .card[data-area="yeouido"] .card-visual{background:linear-gradient(135deg,#E9EDF3 0%,#CFDAE5 100%)}
+  .card[data-area="sokcho"] .card-visual{background:linear-gradient(135deg,#E6EFE8 0%,#C9DED2 100%)}
+  /* 슬립케이션 = 밤 */
+  .card[data-theme="sleep"] .card-visual{color:#F3F1E9}
+  .card[data-theme="sleep"][data-area="yeouido"] .card-visual{background:linear-gradient(150deg,#343A5E 0%,#1B1F33 100%)}
+  .card[data-theme="sleep"][data-area="sokcho"] .card-visual{background:linear-gradient(150deg,#25404A 0%,#111D22 100%)}
+  .card[data-theme="sleep"] .card-visual::before{
+    background-image:radial-gradient(rgba(255,255,255,.62) 1px, transparent 1px);
+    background-size:29px 29px;opacity:.4;
+  }
+  /* K-스파케이션 = 도심 욕조 (타일 패턴) */
+  .card[data-theme="spa"][data-area="myeongdong"] .card-visual{background:linear-gradient(145deg,#F5EDE0 0%,#E3D0B5 55%,#D7BF9F 100%)}
+  .card[data-theme="spa"][data-area="yeouido"] .card-visual{background:linear-gradient(145deg,#F3EBE2 0%,#DED0C2 55%,#CFBBAA 100%)}
+  .card[data-theme="spa"] .card-visual::before{
+    background-image:linear-gradient(rgba(124,94,62,.10) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(124,94,62,.10) 1px, transparent 1px);
+    background-size:24px 24px;opacity:.9;
+  }
+  .cv-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;position:relative;z-index:1}
+  .cv-area{
+    font-family:var(--serif);font-size:23px;letter-spacing:-.02em;color:var(--ink);
+    text-shadow:0 1px 0 rgba(255,255,255,.35);
+  }
+  .card[data-theme="sleep"] .cv-area{color:#F6F4EC;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+  .cv-code{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:rgba(23,32,44,.5);white-space:nowrap;padding-top:6px}
+  .card[data-theme="sleep"] .cv-code{color:rgba(240,240,250,.62)}
+  .cv-foot{display:flex;gap:6px;flex-wrap:wrap;position:relative;z-index:1}
+  .badge{
+    font-size:11px;letter-spacing:.02em;border-radius:5px;padding:4px 8px;font-weight:600;
+    background:rgba(255,253,249,.82);color:var(--ink-soft);border:1px solid rgba(23,32,44,.08);
+    backdrop-filter:blur(2px);
+  }
+  .badge.dt-none{background:rgba(238,241,231,.92);color:var(--sage-dark);border-color:rgba(123,142,114,.35)}
+  .badge.dt-mild{background:rgba(246,240,227,.94);color:#87693A;border-color:rgba(177,146,95,.38)}
+  .badge.dt-swell{background:rgba(251,241,234,.94);color:var(--warn);border-color:rgba(156,90,60,.3)}
+  .badge.dt-sleep{background:rgba(236,237,246,.94);color:#3B4270;border-color:rgba(69,76,121,.28)}
+  .badge.dt-aroma{background:rgba(230,240,237,.94);color:#3B675F;border-color:rgba(78,124,114,.3)}
+  .badge.theme-sleep{
+    background:rgba(255,255,255,.13);color:#EDECF7;border-color:rgba(255,255,255,.28);
+  }
+  .badge.theme-glow{
+    background:rgba(255,253,249,.86);color:var(--sage-dark);border-color:rgba(88,106,80,.24);
+  }
+  .badge.theme-spa{
+    background:rgba(255,253,249,.9);color:#7C5C3C;border-color:rgba(138,106,71,.3);
+  }
+
+  .card-body{padding:19px 20px 18px;display:flex;flex-direction:column;flex:1}
+  .card-title{font-family:var(--serif);font-size:19px;line-height:1.42;letter-spacing:-.02em;font-weight:700}
+  .route{
+    display:flex;flex-direction:column;gap:1px;margin-top:13px;font-size:12.5px;color:var(--ink-soft);
+  }
+  .route .node{display:flex;align-items:center;gap:8px;min-width:0}
+  .route .dot{
+    width:6px;height:6px;border-radius:50%;background:var(--sage);flex:none;
+  }
+  .card[data-theme="sleep"] .route .dot{background:var(--night-2)}
+  .route .dot.stay{background:var(--gold)}
+  .route .place{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+  .route .walk-row{padding-left:2px;height:20px;position:relative}
+  .route .walk-pip{
+    width:2px;align-self:stretch;margin-left:2px;flex:none;
+    background-image:linear-gradient(180deg,#C9C0AE 60%,transparent 0);background-size:2px 5px;background-repeat:repeat-y;
+  }
+  .route .walk{
+    font-family:var(--mono);font-size:10.5px;color:var(--gold);letter-spacing:.04em;white-space:nowrap;
+    padding-left:8px;
+  }
+  .spec-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .spec{
+    display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--sage-dark);
+    background:var(--sage-tint);border-radius:5px;padding:4px 8px;border:1px solid rgba(123,142,114,.18);
+  }
+  .card[data-theme="sleep"] .spec{background:var(--night-tint);color:#3E4570;border-color:rgba(69,76,121,.16)}
+  .spec svg{width:11px;height:11px;flex:none}
+  .card-foot{
+    margin-top:auto;padding-top:14px;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+  }
+  .card-foot-line{border-top:1px solid var(--line-soft);margin-top:14px;padding-top:14px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+  .price small{display:block;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+  .price b{font-family:var(--serif);font-size:20px;letter-spacing:-.01em}
+  .price em{display:block;font-style:normal;font-size:11px;color:var(--muted);margin-top:1px}
+  .detail-hint{
+    display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-soft);
+    border-bottom:1px solid var(--gold);padding-bottom:2px;white-space:nowrap;
+  }
+  .detail-hint svg{width:12px;height:12px}
+  .cons-preview{
+    margin-top:14px;font-size:12px;color:var(--muted);display:flex;gap:7px;line-height:1.5;
+  }
+  .cons-preview svg{width:13px;height:13px;flex:none;margin-top:3px;color:var(--warn)}
+  .cons-preview span{
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+
+  .empty-state{
+    border:1px dashed #D6CDBA;border-radius:var(--radius);padding:56px 24px;text-align:center;
+    background:var(--paper);
+  }
+  .empty-state h3{font-family:var(--serif);font-size:20px;margin-bottom:8px}
+  .empty-state p{font-size:13.5px;color:var(--muted);max-width:460px;margin:0 auto 18px}
+
+  /* ---------- purpose guide ---------- */
+  .purpose-sec{padding-top:42px}
+  .purpose-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:16px}
+  .purpose-head h2{font-family:var(--serif);font-size:clamp(20px,2.2vw,26px);letter-spacing:-.02em;margin-top:10px}
+  .purpose-head p{font-size:12.5px;color:var(--muted);max-width:430px}
+  .purpose-note{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:12px;
+  }
+  .dt-card{
+    border:1px solid var(--line-soft);border-radius:12px;padding:14px 15px;background:var(--paper);
+    border-top:2px solid var(--line);
+  }
+  .dt-card b{display:flex;align-items:center;gap:6px;font-size:12.5px;margin-bottom:4px}
+  .dt-card b i{font-style:normal;font-size:13px}
+  .dt-card span{font-size:11.5px;color:var(--muted);line-height:1.6;display:block}
+  .dt-card[data-kind="glow"]{border-top-color:var(--sage)}
+  .dt-card[data-kind="sleep"]{border-top-color:var(--night-2);background:linear-gradient(180deg,#F7F7FC,var(--paper))}
+  .dt-card[data-kind="both"]{border-top-color:var(--gold)}
+
+  /* ---------- footer ---------- */
+  .site-footer{
+    margin-top:64px;border-top:1px solid var(--line);padding:34px 0 46px;background:var(--paper);
+  }
+  .footer-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+  .footer-grid h4{font-family:var(--serif);font-size:16px;margin-bottom:8px}
+  .footer-grid p{font-size:12px;color:var(--muted);max-width:600px;line-height:1.75}
+  .footer-meta{font-size:11px;color:var(--muted);letter-spacing:.04em;text-align:right}
+  .footer-meta span{display:block}
+
+  /* ---------- modal ---------- */
+  .overlay{
+    position:fixed;inset:0;z-index:100;display:none;
+    background:rgba(23,32,44,.42);
+    backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+    padding:28px 20px;
+    overflow-y:auto;
+  }
+  .overlay.is-open{display:flex;align-items:flex-start;justify-content:center}
+  .modal{
+    background:var(--ivory);border-radius:22px;width:100%;max-width:880px;
+    margin:auto;position:relative;box-shadow:0 30px 80px rgba(15,22,31,.34);
+    overflow:hidden;max-height:calc(100vh - 56px);
+    display:flex;flex-direction:column;
+    animation:modalIn .22s ease-out;
+    --m-accent:var(--gold);
+  }
+  .modal[data-theme="sleep"]{--m-accent:var(--night-2)}
+  .modal[data-theme="spa"]{--m-accent:#8A6A47}
+  .modal-scroll{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;flex:1 1 auto;min-height:0}
+  @keyframes modalIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .modal-close{
+    position:absolute;top:14px;right:14px;z-index:5;width:34px;height:34px;border-radius:50%;
+    background:rgba(255,253,249,.86);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;color:var(--ink);
+    transition:background .16s;
+  }
+  .modal-close:hover{background:#fff}
+  .modal-close svg{width:14px;height:14px}
+  .modal-hero{padding:26px 64px 22px 30px;border-bottom:1px solid var(--line)}
+  .modal[data-theme="sleep"] .modal-hero{background:linear-gradient(180deg,#F1F2F9,rgba(250,248,243,0))}
+  .modal[data-theme="spa"] .modal-hero{background:linear-gradient(180deg,#F7F0E5,rgba(250,248,243,0))}
+  .modal-hero .badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+  .modal-badge{
+    font-size:11px;font-weight:600;letter-spacing:.04em;border-radius:5px;padding:4px 9px;
+    background:var(--paper);border:1px solid var(--line);color:var(--ink-soft);
+  }
+  .modal-badge.dt-none{background:var(--sage-tint);border-color:rgba(123,142,114,.32);color:var(--sage-dark)}
+  .modal-badge.dt-mild{background:var(--gold-tint);border-color:rgba(177,146,95,.34);color:#87693A}
+  .modal-badge.dt-swell{background:var(--warn-tint);border-color:rgba(156,90,60,.28);color:var(--warn)}
+  .modal-badge.dt-sleep{background:var(--night-tint);border-color:rgba(69,76,121,.26);color:#3B4270}
+  .modal-badge.dt-aroma{background:var(--teal-tint);border-color:rgba(78,124,114,.28);color:#3B675F}
+  .modal-badge.theme-glow{background:var(--sage-tint);border-color:rgba(123,142,114,.34);color:var(--sage-dark)}
+  .modal-badge.theme-sleep{background:var(--night);border-color:var(--night);color:#F4F3FA}
+  .modal-badge.theme-spa{background:var(--spa);border-color:var(--spa);color:#FBF6EE}
+  .modal h2{font-family:var(--serif);font-size:clamp(21px,2.7vw,29px);line-height:1.32;letter-spacing:-.025em;font-weight:700;padding-right:36px}
+  .modal-route{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--ink-soft)}
+  .modal-route .arrow{color:var(--m-accent)}
+  .modal-route b{font-weight:600;color:var(--ink)}
+  .modal-route .price-tail{padding-left:11px;margin-left:3px;border-left:1px solid var(--line);color:var(--muted);font-size:12px}
+  .modal-body{padding:26px 30px 0}
+  .section{padding-bottom:28px}
+  .section + .section{border-top:1px solid var(--line);padding-top:26px}
+  .section-title{
+    display:flex;align-items:baseline;gap:10px;margin-bottom:16px;
+  }
+  .section-title h3{font-family:var(--serif);font-size:17.5px;letter-spacing:-.015em;font-weight:700}
+  .section-title span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--m-accent);font-weight:700}
+
+  /* timeline */
+  .timeline{position:relative;padding-left:4px}
+  .tl-item{display:flex;gap:16px;position:relative;padding-bottom:20px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{
+    content:"";position:absolute;left:13px;top:28px;bottom:-2px;width:1px;
+    background:linear-gradient(180deg,#D6CDBA,#E6E0D5);
+  }
+  .tl-item:last-child::before{display:none}
+  .tl-item.is-walk::before{background-image:linear-gradient(180deg,#C9C0AE 50%,transparent 0);background-size:1px 7px;background-repeat:repeat-y}
+  .tl-num{
+    width:27px;height:27px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:11px;background:var(--paper);border:1px solid var(--line);color:var(--ink-soft);
+    z-index:1;
+  }
+  .tl-item.is-care .tl-num{background:var(--sage);border-color:var(--sage);color:#fff}
+  .modal[data-theme="sleep"] .tl-item.is-care .tl-num{background:var(--night-2);border-color:var(--night-2)}
+  .modal[data-theme="spa"] .tl-item.is-care .tl-num{background:var(--spa);border-color:var(--spa)}
+  .tl-item.is-stay .tl-num{background:var(--gold);border-color:var(--gold);color:#fff}
+  .tl-item.is-walk .tl-num{background:var(--ivory);border-color:#D6CDBA;color:var(--gold);font-size:10px}
+  .tl-content{padding-top:2px;min-width:0}
+  .tl-time{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--m-accent);display:block;margin-bottom:2px}
+  .tl-title{display:block;font-size:14.5px;font-weight:600;line-height:1.45}
+  .tl-desc{display:block;font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:3px}
+
+  /* spec table */
+  .spec-table{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper)}
+  .spec-tr{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 16px;border-bottom:1px solid var(--line-soft)}
+  .spec-tr:last-child{border-bottom:0}
+  .spec-l{font-size:13px;color:var(--ink-soft);min-width:0}
+  .spec-l em{display:block;font-style:normal;font-size:11px;color:var(--muted);margin-top:1px;line-height:1.4}
+  .spec-tr .val{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;white-space:nowrap}
+  .spec-tr .val b{font-family:var(--mono);font-size:11.5px;font-weight:700}
+  .val .ox{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;
+    font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:0}
+  .val.yes{color:var(--sage-dark)}
+  .val.yes .ox{background:var(--sage-tint);border:1px solid rgba(123,142,114,.4)}
+  .val.no{color:#9A9284;font-weight:500}
+  .val.no .ox{background:#F2EEE6;border:1px solid #E2DACB}
+  .dots{display:flex;gap:3px;align-items:center;margin-left:2px}
+  .dots i{width:7px;height:7px;border-radius:50%;background:#E4DDCE;display:block}
+  .dots i.on{background:var(--sage)}
+  .modal[data-theme="sleep"] .dots i.on{background:var(--night-2)}
+  .spec-legend{font-size:11.5px;color:var(--muted);margin-top:9px}
+
+  /* warning */
+  .warn-box{
+    background:var(--warn-tint);border:1px solid rgba(156,90,60,.22);
+    border-left:3px solid var(--warn);border-radius:10px;padding:18px 20px;
+  }
+  .warn-box h4{display:flex;align-items:center;gap:8px;font-size:14px;color:#7E452D;margin-bottom:10px;font-weight:700}
+  .warn-box h4 svg{width:15px;height:15px;flex:none}
+  .warn-box li{position:relative;padding-left:15px;font-size:13px;color:#6B4A38;line-height:1.65;margin-bottom:6px}
+  .warn-box li:last-child{margin-bottom:0}
+  .warn-box li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:rgba(156,90,60,.55)}
+  .nnotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+  .nnote{border:1px solid var(--line-soft);background:var(--paper);border-radius:10px;padding:12px 14px}
+  .nnote b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--m-accent);margin-bottom:4px}
+  .nnote span{font-size:12.5px;color:var(--ink-soft);line-height:1.6}
+
+  /* cta */
+  .cta-bar{
+    position:sticky;bottom:0;z-index:4;
+    background:rgba(255,253,249,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);padding:14px 30px 16px;
+    display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  }
+  .cta{
+    flex:1 1 220px;border-radius:10px;padding:14px 16px;font-size:13.5px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;
+    transition:transform .16s,box-shadow .16s,background .16s;
+  }
+  .cta svg{width:13px;height:13px;flex:none;opacity:.8}
+  .cta-care{background:var(--paper);border:1px solid var(--sage);color:var(--sage-dark)}
+  .cta-care:hover{background:var(--sage-tint)}
+  .modal[data-theme="sleep"] .cta-care{border-color:var(--night-2);color:#31375E}
+  .modal[data-theme="sleep"] .cta-care:hover{background:var(--night-tint)}
+  .modal[data-theme="spa"] .cta-care{border-color:var(--spa);color:#7C5C3C}
+  .modal[data-theme="spa"] .cta-care:hover{background:var(--spa-tint)}
+  .cta-stay{background:var(--ink);color:#FCFAF4;box-shadow:0 6px 16px rgba(23,32,44,.16)}
+  .cta-stay:hover{background:#232F3E}
+  .cta:active{transform:translateY(1px)}
+  .cta-note{
+    flex:1 0 100%;font-size:10.5px;color:var(--muted);text-align:center;letter-spacing:.02em;
+  }
+
+  /* toast */
+  .toast{
+    position:fixed;left:50%;bottom:128px;transform:translate(-50%,20px);
+    background:var(--ink);color:#F7F4EC;border-radius:12px;padding:14px 18px;
+    box-shadow:0 18px 44px rgba(15,22,31,.35);z-index:200;
+    max-width:calc(100% - 32px);width:460px;opacity:0;pointer-events:none;
+    transition:opacity .22s ease,transform .22s ease;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .toast .t-top{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+  .toast .t-top .pulse{width:7px;height:7px;border-radius:50%;background:#A8C08C;flex:none;box-shadow:0 0 0 0 rgba(168,192,140,.7);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(168,192,140,.55)}70%{box-shadow:0 0 0 8px rgba(168,192,140,0)}100%{box-shadow:0 0 0 0 rgba(168,192,140,0)}}
+  .toast code{
+    display:block;margin-top:8px;font-family:var(--mono);font-size:10.5px;line-height:1.6;
+    color:#C9D3C0;word-break:break-all;
+  }
+  .toast .t-sub{font-size:11.5px;color:#AEB6BD;margin-top:6px}
+
+  @media (max-width:959px){
+    .header-nav{display:none}
+    .theme-opts{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  }
+  @media (max-width:860px){
+    .theme-tab .tt-body b{font-size:13px}
+    .theme-tab .tt-ico{font-size:18px}
+    .theme-hint{margin-left:0;text-align:left;max-width:none}
+    .hero-stats{grid-template-columns:repeat(2,1fr);margin-top:28px;max-width:none}
+    .hero-stat{padding:13px 16px 0 0}
+    .hero-stat:nth-child(2n){border-right:0;padding-right:0}
+    .hero-stat:nth-child(n+3){padding-top:14px}
+  }
+  @media (max-width:720px){
+    .wrap{padding:0 18px}
+    .site-header .wrap{min-height:56px;padding-top:10px;padding-bottom:10px}
+    .brand-sub{display:none}
+    .brand-mark{font-size:17px}
+    .brand-mark i{font-size:12px;letter-spacing:.01em}
+    .beta-tag{font-size:9.5px;padding:4px 9px;letter-spacing:.08em}
+    .hero{padding:36px 0 24px}
+    .eyebrow{font-size:9.5px;letter-spacing:.14em;gap:8px}
+    .eyebrow::before{width:16px}
+    .hero-stats{grid-template-columns:repeat(2,1fr);margin-top:26px}
+    .hero-stat{padding:12px 14px 0 0}
+    .hero-stat:nth-child(2n){border-right:0;padding-right:0}
+    .hero-stat:nth-child(n+3){padding-top:14px}
+    .filter-group{flex-direction:column;gap:8px}
+    .filter-label{flex:none;padding-top:0}
+    .filter-panel{padding:14px 0 12px}
+    .chip{padding:7px 12px;font-size:12.5px}
+    .theme-band{padding:16px 0 14px}
+    .theme-opts{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;width:100%}
+    .theme-tab{padding:9px 10px;border-radius:12px;gap:8px}
+    .theme-tab .tt-ico{font-size:17px}
+    .theme-tab .tt-body b{font-size:12.5px}
+    .theme-tab .tt-body em{font-size:10px}
+    .theme-tab .tt-count{font-size:10.5px;padding:4px 5px}
+    .theme-band-top{margin-bottom:10px;gap:6px}
+    .theme-hint{font-size:11px;line-height:1.55}
+    .card-visual{height:118px}
+    .cv-area{font-size:21px}
+    .modal-hero{padding:54px 20px 18px}
+    .modal-body{padding-left:20px;padding-right:20px}
+    .cta-bar{padding:10px 20px 12px;gap:8px}
+    .cta{padding:12px 14px;font-size:13px;flex:1 1 100%}
+    .modal h2{padding-right:0}
+    .overlay{padding:0}
+    .modal{border-radius:0;min-height:100%;max-height:100vh}
+    .toast{top:14px;bottom:auto;width:calc(100% - 28px);transform:translate(-50%,-14px)}
+    .toast.show{transform:translate(-50%,0)}
+    .header-nav{display:none}
+    .footer-meta{text-align:left}
+    .modal h2{padding-right:28px}
+    .purpose-sec{padding-top:34px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-mark">Glow<em>cation</em> <i>+ Sleepcation</i></div>
+      <div class="brand-sub">K-beauty × Sleep Recovery Stay</div>
+    </div>
+    <nav class="header-nav" aria-label="주요 메뉴">
+      <a href="#courses">회복 동선 코스</a>
+      <a href="#purpose">회복 목적 기준</a>
+      <a href="#about">서비스 소개</a>
+    </nav>
+    <div class="beta-tag">BETA · 1차 MVP 확장 시안</div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Glowcation × Sleepcation × K-Spacation</p>
+      <h1>피부 관리부터 <span class="hl night">깊은 숙면</span>, <span class="nw">도심 K-스파</span>까지 <span class="dash">—</span> <span class="nw">내 회복 목적에 맞는</span> <span class="nw">웰니스 동선</span>과 <span class="nw">검증된 숙소</span>를 한 번에</h1>
+      <p class="hero-sub">
+        헤드스파·세신·에스테틱을 마친 뒤 붓기를 식힐 회복 숙소부터,
+        수면 측정·아로마·노천탕 뒤 100% 암막으로 깊이 잠들 슬립 스테이,
+        을지로·한남의 1인 세신·전통 스크럽 뒤 깊은 욕조에 몸을 담그는 도심 회복까지.
+        숙소의 회복 스펙은 O/X로 미리 검증하고, 단점은 숨기지 않고 먼저 보여드립니다.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>12</b><span>검증된 회복 동선 코스</span></div>
+        <div class="hero-stat"><b>3</b><span>회복 테마 · 뷰티·숙면·K-스파</span></div>
+        <div class="hero-stat"><b>6</b><span>지역 · 서울 4 · 부산 · 속초·제주</span></div>
+        <div class="hero-stat"><b>9</b><span>회복 숙소 스펙 검증 항목</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-band" aria-label="회복 테마">
+    <div class="wrap">
+      <div class="theme-band-top">
+        <div class="filter-label"><i>①</i> 회복 테마</div>
+        <p class="theme-hint">
+          <span class="d-glow">글로우케이션</span>은 뷰티·스파 관리 뒤 붓기·홍조를 식힐 숙소까지,
+          <span class="d-sleep">슬립케이션</span>은 수면 측정·아로마 뒤 딥슬립 스테이까지,
+          <span class="d-spa nw">K-스파케이션</span>은 1인 세신·전통 스크럽 뒤 깊은 욕조 도심 숙소까지 한 동선으로 묶습니다.
+        </p>
+      </div>
+      <div class="theme-opts" id="theme-tabs" role="group" aria-label="회복 테마 선택"></div>
+    </div>
+  </section>
+
+  <section class="filter-panel" aria-label="코스 필터">
+    <div class="wrap">
+      <div class="filter-group">
+        <div class="filter-label"><i>②</i> 지역</div>
+        <div class="filter-opts" id="area-tabs" role="group" aria-label="지역 선택"></div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label"><i>③</i> 회복 목적</div>
+        <div class="filter-opts" id="purpose-tabs" role="group" aria-label="회복 목적(다운타임·수면) 선택"></div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label"><i>④</i> 회복 숙소 조건</div>
+        <div class="filter-opts" id="spec-chips" role="group" aria-label="회복 숙소 역필터 (다중 선택)"></div>
+      </div>
+      <div class="filter-status">
+        <div>
+          <div class="result-count" id="result-count" aria-live="polite"><b>10</b>개 코스</div>
+          <div class="active-tags" id="active-tags"></div>
+        </div>
+        <button type="button" class="reset-btn" id="reset-btn">필터 초기화</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="results wrap" id="courses">
+    <div class="results-head">
+      <div>
+        <h2>회복 목적에 맞는 검증된 동선</h2>
+        <p>카드를 누르면 4단계 회복 타임라인과 숙소 스펙 O/X 검증표, 가기 전 확인할 단점 3가지가 열립니다.</p>
+      </div>
+    </div>
+    <div class="grid" id="course-grid"></div>
+    <div id="empty-slot"></div>
+  </section>
+
+  <section class="wrap purpose-sec" id="purpose">
+    <div class="purpose-head">
+      <div>
+        <p class="eyebrow">Recovery Purpose</p>
+        <h2>다섯 가지 회복 목적, 세 테마가 같은 기준으로</h2>
+      </div>
+      <p>필터의 ③ 회복 목적은 관리·프로그램 뒤 몸이 어떤 상태인지를 기준으로 나눕니다. 글로우·슬립·K-스파케이션 모두 이 기준을 공유하고, 숙소 조건만 달라집니다.</p>
+    </div>
+    <div class="purpose-note">
+      <div class="dt-card" data-kind="glow">
+        <b><i>💆‍♀️</i> 당일 티 안 남</b>
+        <span>헤드스파 · 1인 세신 · 일반 관리. 관리 직후 외출·식사가 가능해 숙소는 ‘쉬는 조건’만 보면 됩니다.</span>
+      </div>
+      <div class="dt-card" data-kind="glow">
+        <b><i>💆‍♀️</i> 반나절 붉은기</b>
+        <span>진정·필링·모공 관리. 2~6시간 붉은기가 남아 암막 커튼과 무향 어메니티가 중요합니다.</span>
+      </div>
+      <div class="dt-card" data-kind="glow">
+        <b><i>💆‍♀️</i> 2~3일 붓기 케어</b>
+        <span>리프팅·집중 관리. 냉동칸(얼음찜질)과 비대면 체크인, 조용한 객실이 필수 조건이 됩니다.</span>
+      </div>
+      <div class="dt-card" data-kind="sleep">
+        <b><i>🌙</i> 딥슬립 · 수면분석</b>
+        <span>수면 측정·리포트 뒤 잠드는 스테이. 100% 암막, 방음, 프리미엄 침구·모션베드가 핵심입니다.</span>
+      </div>
+      <div class="dt-card" data-kind="both">
+        <b><i>♨️</i> 아로마 · 사우나 이완</b>
+        <span>아로마 테라피·노천탕·전통 스크럽으로 체온을 올린 뒤. 무향 어메니티와 정숙도, 깊은 욕조가 좌우합니다.</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="about">
+  <div class="wrap footer-grid">
+    <div>
+      <h4>Glowcation + Sleepcation + K-Spacation</h4>
+      <p>
+        글로우케이션은 K-뷰티·스파 관리와 회복 숙소를, 슬립케이션은 숙면·수면 회복 특화 스테이를,
+        K-스파케이션은 1인 세신·전통 스크럽과 깊은 욕조를 갖춘 도심 회복 숙소를 하나의 동선으로 큐레이션하는 정보 서비스입니다.
+        의료 행위를 직접 중개하지 않으며, 관리·프로그램과 숙소 예약은 각 제휴 채널로 연결됩니다.
+        본 페이지는 화면 검증용 1차 MVP 확장 시안으로, 표시된 장소·요금·스펙·수면 리포트 내용은 모두 <b>샘플 데이터</b>입니다.
+      </p>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Glowcation Prototype</span>
+      <span>Single-file HTML · Vanilla JS</span>
+      <span>데이터 기준일 2026.11</span>
+    </div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" id="modal"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <div class="t-top"><span class="pulse"></span><span id="toast-title">제휴 트래킹 기록</span></div>
+  <code id="toast-code"></code>
+  <div class="t-sub" id="toast-sub"></div>
+</div>
+
+<script type="application/json" id="course-data">
+{
+  "courses": [
+    {
+      "id": "md-01",
+      "code": "MD-01",
+      "theme": "glow",
+      "area": "myeongdong",
+      "areaLabel": "명동",
+      "purpose": "none",
+      "title": "명동 1인 세신 + 비대면 레지던스 1박",
+      "careType": "1인 세신",
+      "careName": "명동 프라이빗 1인 세신샵",
+      "stayName": "스테이 콰이어트 명동",
+      "walk": 3,
+      "price": 145000,
+      "priceNote": "2인 1실 · 세금 포함",
+      "badges": ["비대면 체크인", "100% 암막커튼", "냉동칸"],
+      "specs": {
+        "contactless": true,
+        "blackout": true,
+        "humidifier": true,
+        "unscented": true,
+        "freezer": true,
+        "soundproof": false,
+        "quiet": 4.2,
+        "bedding": false,
+        "motionbed": false,
+        "delivery": true,
+        "bath": false
+      },
+      "cons": [
+        "1층 공용 로비가 좁아 20시 전후 배달 수령 대기가 생깁니다.",
+        "주말 낮에는 명동 거리 소음이 4층까지 미세하게 들립니다.",
+        "건물 주차가 불가해 캐리어가 많으면 택시를 권합니다."
+      ],
+      "notes": [
+        {"label": "코스메슈티컬 약국", "text": "도보 2분 대형 약국 — 재생크림·진정팩·무향 클렌저 취급"},
+        {"label": "저자극 식사", "text": "도보 4분 전복죽·저자극 한식당, 도보 6분 죽 전문점"}
+      ],
+      "timeline": [
+        {"time": "13:30", "kind": "care", "title": "1인 세신 60분 · 프라이빗 룸", "desc": "전신 각질·등 관리 후 얼굴 진정 팩. 단독 룸이라 대기 없이 진행됩니다."},
+        {"time": "14:40", "kind": "walk", "title": "도보 3분 · 실내 통로 연결", "desc": "건물 사이 실내 통로로 이동해 야외 노출이 거의 없습니다."},
+        {"time": "14:50", "kind": "stay", "title": "비대면 셀프 체크인", "desc": "도어락 코드로 입실, 냉동팩 2개와 가습기는 사전 요청으로 객실 세팅."},
+        {"time": "18:00", "kind": "food", "title": "약국 & 저자극 저녁", "desc": "진정팩·재생크림을 사고, 전복죽으로 가볍게 마무리합니다."}
+      ],
+      "providers": {
+        "care": {"provider": "creatrip", "subid": "GC-MD-01-CARE"},
+        "stay": {"provider": "agoda", "subid": "GC-MD-01-STAY"}
+      }
+    },
+    {
+      "id": "cd-01",
+      "code": "CD-01",
+      "theme": "glow",
+      "area": "gangnam",
+      "areaLabel": "강남·청담",
+      "purpose": "none",
+      "title": "청담 헤드스파 + 딥슬립 부티크",
+      "careType": "헤드스파",
+      "careName": "청담 두피 헤드스파 스튜디오",
+      "stayName": "청담 리커버리 부티크",
+      "walk": 4,
+      "price": 210000,
+      "priceNote": "1인 1실 · 세금 포함",
+      "badges": ["100% 암막커튼", "저자극·가습기", "정숙도 5.0"],
+      "specs": {
+        "contactless": true,
+        "blackout": true,
+        "humidifier": true,
+        "unscented": true,
+        "freezer": false,
+        "soundproof": true,
+        "quiet": 5.0,
+        "bedding": true,
+        "motionbed": false,
+        "delivery": true,
+        "bath": false
+      },
+      "cons": [
+        "객실 내 전자레인지가 없어 2층 공용 라운지를 이용해야 합니다.",
+        "주변 편의점까지 도보 6분, 밤에는 골목이 어두운 편입니다.",
+        "금·토 요금이 주중보다 40%가량 높습니다."
+      ],
+      "notes": [
+        {"label": "코스메슈티컬 약국", "text": "도보 5분 코스메슈티컬 약국 — 두피 앰플·무향 샴푸 구비"},
+        {"label": "저자극 식사", "text": "도보 3분 저자극 한식·도보 7분 죽집"}
+      ],
+      "timeline": [
+        {"time": "15:00", "kind": "care", "title": "두피 헤드스파 70분", "desc": "두피 스케일링과 목·어깨 릴리스. 오일 사용 여부를 미리 선택할 수 있습니다."},
+        {"time": "16:20", "kind": "walk", "title": "도보 4분 · 이면도로", "desc": "대로를 피해 골목으로 이동, 모자 없이도 부담이 적은 구간입니다."},
+        {"time": "16:30", "kind": "stay", "title": "비대면 체크인 · 암막 세팅", "desc": "100% 암막 커튼과 무향 어메니티, 가습기가 기본 세팅된 객실."},
+        {"time": "19:00", "kind": "food", "title": "약국 & 저자극 저녁", "desc": "두피 앰플을 사고, 자극 없는 한식 백반으로 저녁을 마칩니다."}
+      ],
+      "providers": {
+        "care": {"provider": "creatrip", "subid": "GC-CD-01-CARE"},
+        "stay": {"provider": "agoda", "subid": "GC-CD-01-STAY"}
+      }
+    },
+    {
+      "id": "gn-01",
+      "code": "GN-01",
+      "theme": "glow",
+      "area": "gangnam",
+      "areaLabel": "강남·청담",
+      "purpose": "mild_redness",
+      "title": "강남 피부관리 + 얼음찜질 레지던스",
+      "careType": "피부관리",
+      "careName": "강남 진정·수분 피부관리실",
+      "stayName": "강남 아이스 리커버리 레지던스",
+      "walk": 2,
+      "price": 168000,
+      "priceNote": "1인 1실 · 세금 포함",
+      "badges": ["비대면 체크인", "냉동칸(얼음찜질)", "도보 2분"],
+      "specs": {
+        "contactless": true,
+        "blackout": true,
+        "humidifier": false,
+        "unscented": true,
+        "freezer": true,
+        "soundproof": false,
+        "quiet": 4.0,
+        "bedding": false,
+        "motionbed": false,
+        "delivery": true,
+        "bath": false
+      },
+      "cons": [
+        "가습기가 없어 건조할 경우 프런트에 별도 요청해야 합니다.",
+        "엘리베이터가 2대뿐이라 15시 체크인 시간대에 혼잡합니다.",
+        "창문이 인접 오피스 건물과 마주 보여 커튼을 상시 닫아야 합니다."
+      ],
+      "notes": [
+        {"label": "코스메슈티컬 약국", "text": "도보 1분 약국 — 냉각 마스크·진정 앰플 상시 재고"},
+        {"label": "저자극 식사", "text": "도보 5분 저자극 비빔밥·맑은 국수"}
+      ],
+      "timeline": [
+        {"time": "11:00", "kind": "care", "title": "진정·수분 관리 90분", "desc": "레이저 없이 진정 위주의 관리. 붉은기가 2~4시간 남습니다."},
+        {"time": "12:40", "kind": "walk", "title": "도보 2분 · 같은 블록", "desc": "건물 바로 옆 골목으로, 모자와 선글라스만 있으면 충분합니다."},
+        {"time": "12:50", "kind": "stay", "title": "비대면 입실 · 얼음찜질 준비", "desc": "냉동칸에 아이스팩 4개가 상비되어 바로 찜질이 가능합니다."},
+        {"time": "15:00", "kind": "food", "title": "약국 & 저자극 늦은 점심", "desc": "냉각 마스크를 사서 객실에서 붓기를 내리고, 맑은 국수로 식사."}
+      ],
+      "providers": {
+        "care": {"provider": "creatrip", "subid": "GC-GN-01-CARE"},
+        "stay": {"provider": "agoda", "subid": "GC-GN-01-STAY"}
+      }
+    },
+    {
+      "id": "hd-01",
+      "code": "HD-01",
+      "theme": "glow",
+      "area": "hongdae",
+      "areaLabel": "홍대",
+      "purpose": "mild_redness",
+      "title": "홍대 에스테틱 + 조용한 스테이",
+      "careType": "에스테틱",
+      "careName": "홍대 모공·진정 에스테틱",
+      "stayName": "홍대 어반 사일런트 스테이",
+      "walk": 6,
+      "price": 132000,
+      "priceNote": "2인 1실 · 세금 포함",
+      "badges": ["비대면 체크인", "100% 암막커튼", "주택가 정숙"],
+      "specs": {
+        "contactless": true,
+        "blackout": true,
+        "humidifier": true,
+        "unscented": false,
+        "freezer": false,
+        "soundproof": false,
+        "quiet": 4.0,
+        "bedding": false,
+        "motionbed": false,
+        "delivery": true,
+        "bath": false
+      },
+      "cons": [
+        "무향 어메니티가 아니라 향이 있는 기본 어메니티가 제공됩니다(요청 시 교체).",
+        "관리처에서 도보 6분, 중간에 짧은 오르막 골목이 있습니다.",
+        "금요일 밤에는 인근 주점 소리가 새벽 1시까지 이어질 수 있습니다."
+      ],
+      "notes": [
+        {"label": "코스메슈티컬 약국", "text": "도보 4분 약국 — 진정 시트마스크·무향 클렌저 취급"},
+        {"label": "저자극 식사", "text": "도보 3분 죽·도보 8분 채식 한식"}
+      ],
+      "timeline": [
+        {"time": "16:00", "kind": "care", "title": "모공·진정 에스테틱 80분", "desc": "압출 후 진정팩까지. 붉은기가 남으므로 야외 일정은 잡지 않는 편이 좋습니다."},
+        {"time": "17:30", "kind": "walk", "title": "도보 6분 · 주택가 골목", "desc": "대로를 벗어나 주택가로 들어서면 사람이 거의 없습니다."},
+        {"time": "17:40", "kind": "stay", "title": "비대면 입실", "desc": "1층 공용 현관에서 도어락으로 입실, 3층 단독 객실."},
+        {"time": "19:30", "kind": "food", "title": "약국 & 저자극 저녁", "desc": "무향 클렌저와 시트마스크를 사고, 죽으로 가볍게 마무리합니다."}
+      ],
+      "providers": {
+        "care": {"provider": "creatrip", "subid": "GC-HD-01-CARE"},
+        "stay": {"provider": "agoda", "subid": "GC-HD-01-STAY"}
+      }
+    },
+    {
+      "id": "bs-01",
+      "code": "BS-01",
+      "theme": "glow",
+      "area": "busan",
+      "areaLabel": "부산",
+      "purpose": "aroma_sauna",
+      "title": "해운대 온천·아로마 스파 + 오션뷰 회복 호텔",
+      "careType": "스파",
+      "careName": "해운대 온천·아로마 스파",
+      "stayName": "해운대 오션 리커버리 호텔",
+      "walk": 5,
+      "price": 195000,
+      "priceNote": "2인 1실 · 오션뷰",
+      "badges": ["오션뷰", "저자극·가습기", "냉동칸"],
+      "specs": {
+        "contactless": false,
+        "blackout": false,
+        "humidifier": true,
+        "unscented": true,
+        "freezer": true,
+        "soundproof": false,
+        "quiet": 4.0,
+        "bedding": true,
+        "motionbed": false,
+        "delivery": true,
+        "bath": true
+      },
+      "cons": [
+        "오션뷰 창으로 아침 일출 빛이 들어와 암막이 완벽하지 않습니다.",
+        "비대면 체크인이 없어 프런트에서 직접 수속해야 합니다.",
+        "성수기에는 주차비가 1박 15,000원 별도로 붙습니다."
+      ],
+      "notes": [
+        {"label": "코스메슈티컬 약국", "text": "도보 3분 약국 — 진정·보습 라인 상비"},
+        {"label": "저자극 식사", "text": "도보 5분 해물죽·도보 7분 맑은 국밥"}
+      ],
+      "timeline": [
+        {"time": "10:00", "kind": "care", "title": "온천·아로마 스파 90분", "desc": "건식 사우나 후 오일 릴리스. 관리 후 샤워실에서 바로 정리할 수 있습니다."},
+        {"time": "11:50", "kind": "walk", "title": "도보 5분 · 해변 산책로", "desc": "해안 산책로를 따라 이동, 바람이 부는 구간은 모자가 필요합니다."},
+        {"time": "12:30", "kind": "stay", "title": "프런트 체크인 · 오션뷰 배정", "desc": "이른 체크인 요청 가능, 냉동칸 있는 객실 타입으로 배정."},
+        {"time": "14:30", "kind": "food", "title": "약국 & 해물죽", "desc": "진정 크림을 사고, 자극 없는 해물죽으로 점심을 마칩니다."}
+      ],
+      "providers": {
+        "care": {"provider": "klook", "subid": "GC-BS-01-CARE"},
+        "stay": {"provider": "agoda", "subid": "GC-BS-01-STAY"}
+      }
+    },
+    {
+      "id": "ss-01",
+      "code": "SS-01",
+      "theme": "glow",
+      "area": "gangnam",
+      "areaLabel": "강남·청담",
+      "purpose": "swelling_care",
+      "title": "신사 리프팅 관리 + 프라이빗 스테이",
+      "careType": "리프팅 관리",
+      "careName": "신사 프라이빗 리프팅 케어",
+      "stayName": "신사 가든 프라이빗 스테이",
+      "walk": 3,
+      "price": 240000,
+      "priceNote": "1인 1실 · 정원 객실",
+      "badges": ["프라이빗 단독", "정숙도 5.0", "100% 암막커튼"],
+      "specs": {
+        "contactless": true,
+        "blackout": true,
+        "humidifier": true,
+        "unscented": true,
+        "freezer": true,
+        "soundproof": true,
+        "quiet": 5.0,
+        "bedding": true,
+        "motionbed": false,
+        "delivery": true,
+        "bath": false
+      },
+      "cons": [
+        "1박 요금이 높은 편으로 주중에도 24만 원대입니다.",
+        "조식이 제공되지 않아 아침 식사는 직접 해결해야 합니다.",
+        "객실이 3실뿐이라 주말 예약이 일찍 닫힙니다."
+      ],
+      "notes": [
+        {"label": "코스메슈티컬 약국", "text": "도보 2분 약국 — 붓기 케어 보조 제품·진정 마스크"},
+        {"label": "저자극 식사", "text": "도보 3분 저자극 한식·도보 5분 죽 전문점"}
+      ],
+      "timeline": [
+        {"time": "10:30", "kind": "care", "title": "리프팅·탄력 집중 케어 100분", "desc": "관리 후 2~3일 붓기가 이어집니다. 얼음찜질과 수면 자세 안내를 함께 받습니다."},
+        {"time": "12:20", "kind": "walk", "title": "도보 3분 · 담장 골목", "desc": "주택가 담장을 따라 3분, 단독 출입문으로 바로 들어갑니다."},
+        {"time": "12:30", "kind": "stay", "title": "비대면 입실 · 정원 객실", "desc": "단독 출입문 코드 입실. 냉동칸 아이스팩과 가습기 기본 세팅."},
+        {"time": "18:30", "kind": "food", "title": "약국 & 저자극 저녁", "desc": "붓기 케어 보조 제품을 사고, 자극 없는 한식으로 저녁."}
+      ],
+      "providers": {
+        "care": {"provider": "creatrip", "subid": "GC-SS-01-CARE"},
+        "stay": {"provider": "agoda", "subid": "GC-SS-01-STAY"}
+      }
+    },
+    {
+      "id": "yd-01",
+      "code": "YD-01",
+      "theme": "sleep",
+      "area": "yeouido",
+      "areaLabel": "여의도·용산",
+      "purpose": "deep_sleep",
+      "title": "여의도 비접촉 수면리포트 + 저속노화 조식 스테이",
+      "careType": "수면검사·리포트",
+      "careName": "여의도 수면랩 비접촉 수면측정",
+      "stayName": "여의도 리커버리 스위트",
+      "walk": 4,
+      "price": 265000,
+      "priceNote": "1인 1실 · 수면리포트 포함",
+      "badges": ["비대면 체크인", "100% 암막커튼", "모션베드"],
+      "specs": {
+        "contactless": true,
+        "blackout": true,
+        "humidifier": true,
+        "unscented": true,
+        "freezer": true,
+        "soundproof": true,
+        "quiet": 4.9,
+        "bedding": true,
+        "motionbed": true,
+        "delivery": true,
+        "bath": false
+      },
+      "cons": [
+        "수면 측정이 침대 아래 센서 방식이라 2인 1실에서는 상대방 움직임이 일부 반영됩니다.",
+        "저속노화 조식은 08:00·08:40 두 타임만 운영해 늦잠을 자면 놓칠 수 있습니다.",
+        "여의도 특성상 주말 밤 도로 소음이 12층 이상에서도 미세하게 들립니다."
+      ],
+      "notes": [
+        {"label": "수면 데이터·리포트", "text": "수면 단계·심박 변이 리포트 1장, 4주 후 재측정 할인 코드 포함"},
+        {"label": "조식·식음", "text": "저속노화 조식 — 혈당 부하 낮춘 채소·단백질 중심, 객실 서빙"}
+      ],
+      "timeline": [
+        {"time": "19:30", "kind": "care", "title": "비접촉 수면 측정 세팅 30분", "desc": "손목 착용 없이 침대 아래 센서로 수면 단계·심박 변이를 기록. 수면 코치가 10분 브리핑합니다."},
+        {"time": "20:10", "kind": "walk", "title": "도보 4분 · 강변 이면도로", "desc": "대로를 피해 한 블록, 야경 조명이 적은 구간입니다."},
+        {"time": "20:20", "kind": "stay", "title": "비대면 입실 · 수면 세팅", "desc": "암막 커튼 100%, 실내 19도, 무향 어메니티. 모션베드 헤드 각도를 조절합니다."},
+        {"time": "08:00", "kind": "food", "title": "수면 리포트 & 저속노화 조식", "desc": "아침에 수면 리포트 1장을 받고, 혈당 부담을 낮춘 조식을 객실에서."}
+      ],
+      "providers": {
+        "care": {"provider": "creatrip", "subid": "SC-YD-01-CARE"},
+        "stay": {"provider": "agoda", "subid": "SC-YD-01-STAY"}
+      }
+    },
+    {
+      "id": "sc-01",
+      "code": "SC-01",
+      "theme": "sleep",
+      "area": "sokcho",
+      "areaLabel": "속초·제주",
+      "purpose": "aroma_sauna",
+      "title": "속초 노천탕 + 딥슬립 웰니스 스테이",
+      "careType": "노천탕·사우나",
+      "careName": "속초 해변 노천탕 & 건식 사우나",
+      "stayName": "설악 딥슬립 웰니스 스테이",
+      "walk": 6,
+      "price": 218000,
+      "priceNote": "2인 1실 · 조식 포함",
+      "badges": ["노천탕·사우나", "100% 암막커튼", "정숙도 5.0"],
+      "specs": {
+        "contactless": true,
+        "blackout": true,
+        "humidifier": true,
+        "unscented": true,
+        "freezer": false,
+        "soundproof": true,
+        "quiet": 5.0,
+        "bedding": true,
+        "motionbed": false,
+        "delivery": false,
+        "bath": true
+      },
+      "cons": [
+        "노천탕은 22시에 닫히고, 사우나 정기 휴무가 매월 첫 화요일입니다.",
+        "숙소까지 도보 6분 중 200m가 오르막이라 캐리어가 있으면 힘듭니다.",
+        "냉동칸이 없어 얼음찜질이 필요하면 프런트에 요청해야 합니다."
+      ],
+      "notes": [
+        {"label": "수면 코치 피드백", "text": "체크아웃 시 1:1 15분 — 입면 시간·중간 각성 횟수 해석"},
+        {"label": "조식·식음", "text": "동해 해산물 위주 저자극 조식, 글루텐프리 옵션 사전 요청"}
+      ],
+      "timeline": [
+        {"time": "16:00", "kind": "care", "title": "노천탕·건식 사우나 80분", "desc": "해변 노천탕에서 체온을 올린 뒤 건식 사우나 10분씩 2세트. 마지막은 미온수로 마무리."},
+        {"time": "17:40", "kind": "walk", "title": "도보 6분 · 해안 산책로", "desc": "파도 소리만 남는 구간, 노을 시간대에 이동합니다."},
+        {"time": "17:50", "kind": "stay", "title": "비대면 입실 · 딥슬립 세팅", "desc": "이중창·차음벽, 암막 100%, 가습기 45% 자동 유지."},
+        {"time": "20:00", "kind": "food", "title": "저자극 저녁 & 취침 준비", "desc": "따뜻한 해산물 죽으로 저녁을 마치고 21시 30분 이후 정숙 안내."}
+      ],
+      "providers": {
+        "care": {"provider": "klook", "subid": "SC-SC-01-CARE"},
+        "stay": {"provider": "agoda", "subid": "SC-SC-01-STAY"}
+      }
+    },
+    {
+      "id": "ys-01",
+      "code": "YS-01",
+      "theme": "sleep",
+      "area": "yeouido",
+      "areaLabel": "여의도·용산",
+      "purpose": "aroma_sauna",
+      "title": "남산·용산 아로마 테라피 + 100% 암막 스테이",
+      "careType": "아로마 테라피",
+      "careName": "남산 아로마 테라피 하우스",
+      "stayName": "용산 나이트 블랙아웃 스테이",
+      "walk": 5,
+      "price": 198000,
+      "priceNote": "2인 1실 · 세금 포함",
+      "badges": ["100% 암막커튼", "아로마 테라피", "방음·정숙도 4.4"],
+      "specs": {
+        "contactless": true,
+        "blackout": true,
+        "humidifier": false,
+        "unscented": true,
+        "freezer": false,
+        "soundproof": true,
+        "quiet": 4.4,
+        "bedding": true,
+        "motionbed": false,
+        "delivery": true,
+        "bath": false
+      },
+      "cons": [
+        "가습기가 없어 겨울철에는 프런트에서 대여해야 합니다(재고 5대).",
+        "남산 자락이라 밤 22시 이후 택시 진입로가 한 곳뿐입니다.",
+        "아로마 오일 향에 민감하면 무향 세션으로 바꿔야 해 이완감이 약해집니다."
+      ],
+      "notes": [
+        {"label": "아로마 노트", "text": "사용한 블렌딩 노트 1장과 홈 스프레이 30ml 제공"},
+        {"label": "야식·조식", "text": "따뜻한 죽·무카페인 티 무료, 조식은 07시부터"}
+      ],
+      "timeline": [
+        {"time": "18:30", "kind": "care", "title": "아로마 테라피 90분", "desc": "라벤더·네롤리 블렌딩 오일로 등·어깨 릴리스. 무향 오일 선택도 가능합니다."},
+        {"time": "20:10", "kind": "walk", "title": "도보 5분 · 남산 자락 골목", "desc": "가로등이 적은 주택가 골목, 사람이 거의 없는 구간입니다."},
+        {"time": "20:20", "kind": "stay", "title": "비대면 입실 · 암막 세팅", "desc": "100% 암막 커튼과 차음 이중창, 취침등 밝기 조절까지 세팅."},
+        {"time": "21:30", "kind": "food", "title": "무카페인 야식 & 취침", "desc": "따뜻한 죽과 무카페인 티로 마무리, 22시 이후 정숙 안내."}
+      ],
+      "providers": {
+        "care": {"provider": "creatrip", "subid": "SC-YS-01-CARE"},
+        "stay": {"provider": "agoda", "subid": "SC-YS-01-STAY"}
+      }
+    },
+    {
+      "id": "jj-01",
+      "code": "JJ-01",
+      "theme": "sleep",
+      "area": "sokcho",
+      "areaLabel": "속초·제주",
+      "purpose": "deep_sleep",
+      "title": "제주 숲속 무소음 + 모션베드 수면 스테이",
+      "careType": "사운드 배스·호흡",
+      "careName": "제주 숲 사운드 배스 스튜디오",
+      "stayName": "제주 무소음 포레스트 하우스",
+      "walk": 7,
+      "price": 228000,
+      "priceNote": "1인 1실 · 조식 포함",
+      "badges": ["무소음 숲", "모션베드", "프리미엄 침구"],
+      "specs": {
+        "contactless": true,
+        "blackout": true,
+        "humidifier": true,
+        "unscented": true,
+        "freezer": false,
+        "soundproof": true,
+        "quiet": 5.0,
+        "bedding": true,
+        "motionbed": true,
+        "delivery": false,
+        "bath": false
+      },
+      "cons": [
+        "숲속이라 배달이 되지 않고, 편의점까지 차로 8분 거리입니다.",
+        "모션베드가 있는 객실이 4실 중 2실이라 원하는 날짜에 없을 수 있습니다.",
+        "조식이 채식 위주여서 고기·커피는 직접 준비해야 합니다."
+      ],
+      "notes": [
+        {"label": "수면 일지", "text": "7일 수면 일지 리포트를 앱으로 제공, 입면·각성 패턴 요약"},
+        {"label": "조식·식음", "text": "숲 채식 조식 — 제철 과일·견과·두유, 08시부터 10시"}
+      ],
+      "timeline": [
+        {"time": "15:00", "kind": "care", "title": "숲 사운드 배스·호흡 60분", "desc": "숲 소리와 낮은 주파수로 교감신경을 내리는 세션. 무향 룸에서 진행합니다."},
+        {"time": "16:10", "kind": "walk", "title": "도보 7분 · 숲길", "desc": "자동차 통행이 없는 숲길, 경사가 완만해 슬리퍼로도 이동 가능합니다."},
+        {"time": "16:20", "kind": "stay", "title": "비대면 입실 · 모션베드 세팅", "desc": "모션베드 각도·매트리스 강도 선택, 암막 100%, 무소음 냉장고."},
+        {"time": "19:00", "kind": "food", "title": "채식 저녁 & 수면 루틴", "desc": "제철 채소 위주 저녁 후 21시 취침 루틴 안내를 받습니다."}
+      ],
+      "providers": {
+        "care": {"provider": "klook", "subid": "SC-JJ-01-CARE"},
+        "stay": {"provider": "agoda", "subid": "SC-JJ-01-STAY"}
+      }
+    },
+    {
+      "id": "sp-01",
+      "code": "SP-01",
+      "theme": "spa",
+      "area": "myeongdong",
+      "areaLabel": "을지로·명동",
+      "purpose": "none",
+      "title": "을지로 1인 세신 + 깊은 욕조 호텔 1박",
+      "careType": "1인 세신·K스크럽",
+      "careName": "을지로 K-스크럽 프라이빗 세신룸",
+      "stayName": "명동 딥배스 호텔",
+      "walk": 5,
+      "price": 179000,
+      "priceNote": "1인 1실 · 세신 60분 포함",
+      "badges": ["깊은 욕조·반신욕", "비대면 체크인", "도보 5분"],
+      "specs": {
+        "contactless": true,
+        "blackout": true,
+        "humidifier": true,
+        "unscented": true,
+        "freezer": false,
+        "soundproof": true,
+        "quiet": 4.6,
+        "bedding": true,
+        "motionbed": false,
+        "delivery": true,
+        "bath": true
+      },
+      "cons": [
+        "욕조가 있는 객실이 전체 40실 중 12실이라 주말은 일주일 전에 마감됩니다.",
+        "세신룸이 지하 1층이라 18~20시 대기 시간대에는 로비가 붐빕니다.",
+        "도심 호텔이라 창밖이 빌딩으로 막혀 전망은 기대하기 어렵습니다."
+      ],
+      "notes": [
+        {"label": "깊은 욕조·반신욕", "text": "욕조 깊이 55cm · 온수 온도 개별 조절, 입욕제 3종 무료"},
+        {"label": "식혜·이너뷰티 카페", "text": "도보 3분 전통 식혜·대추차 카페 — 세신 후 수분 보충 코스"}
+      ],
+      "timeline": [
+        {"time": "18:00", "kind": "care", "title": "프라이빗 1인 세신 60분", "desc": "때밀이·등 스크럽 후 오일 마무리. 단독 룸이라 다른 손님과 마주치지 않습니다."},
+        {"time": "19:10", "kind": "walk", "title": "도보 5분 · 을지로 골목", "desc": "대로를 피해 호텔 뒤편 골목으로, 야간에도 조명이 밝습니다."},
+        {"time": "19:20", "kind": "stay", "title": "비대면 입실 · 욕조 세팅", "desc": "욕조 온수 40도 세팅, 입욕제 3종과 타월 4장이 미리 준비됩니다."},
+        {"time": "20:30", "kind": "food", "title": "식혜 & 반신욕 루틴", "desc": "도보 3분 카페에서 식혜를 사 와 15분 반신욕, 수분 보충까지."}
+      ],
+      "providers": {
+        "care": {"provider": "creatrip", "subid": "KS-SP-01-CARE"},
+        "stay": {"provider": "agoda", "subid": "KS-SP-01-STAY"}
+      }
+    },
+    {
+      "id": "sp-02",
+      "code": "SP-02",
+      "theme": "spa",
+      "area": "yeouido",
+      "areaLabel": "한남·이태원",
+      "purpose": "aroma_sauna",
+      "title": "한남 전통 아로마 스크럽 + 사우나·이너뷰티 스테이",
+      "careType": "전통 스크럽·사우나",
+      "careName": "이태원 전통 아로마 스크럽 하우스",
+      "stayName": "한남 이너뷰티 스테이",
+      "walk": 6,
+      "price": 205000,
+      "priceNote": "2인 1실 · 사우나 포함",
+      "badges": ["아로마 스크럽", "사우나", "깊은 욕조·반신욕"],
+      "specs": {
+        "contactless": true,
+        "blackout": true,
+        "humidifier": true,
+        "unscented": true,
+        "freezer": false,
+        "soundproof": true,
+        "quiet": 4.1,
+        "bedding": true,
+        "motionbed": false,
+        "delivery": true,
+        "bath": true
+      },
+      "cons": [
+        "공용 사우나가 21시에 닫혀 저녁 늦게 도착하면 이용 시간이 40분 남짓입니다.",
+        "이태원 특성상 금·토 밤에는 거리 소음이 2층 객실까지 들립니다.",
+        "이너뷰티 티는 1인 2잔까지 무료이고 추가 잔은 유료입니다."
+      ],
+      "notes": [
+        {"label": "전통 스크럽", "text": "한국 전통 때밀이 + 아로마 오일 스크럽 90분, 무향 오일 선택 가능"},
+        {"label": "이너뷰티 티 카페", "text": "도보 2분 — 대추·오미자 티, 글루텐프리 약과"}
+      ],
+      "timeline": [
+        {"time": "17:00", "kind": "care", "title": "전통 아로마 스크럽 90분", "desc": "때밀이 후 아로마 오일 스크럽, 마무리 오일 마사지 20분까지."},
+        {"time": "18:40", "kind": "walk", "title": "도보 6분 · 남산 자락 골목", "desc": "이태원 대로를 피해 한남동 주택가로 이동합니다."},
+        {"time": "18:50", "kind": "stay", "title": "비대면 입실 · 사우나·욕조", "desc": "객실 내 깊은 욕조와 1층 공용 사우나(21시까지), 무향 어메니티."},
+        {"time": "20:00", "kind": "food", "title": "이너뷰티 티 & 반신욕", "desc": "대추·오미자 티를 사 와 15분 반신욕으로 하루를 마무리."}
+      ],
+      "providers": {
+        "care": {"provider": "creatrip", "subid": "KS-SP-02-CARE"},
+        "stay": {"provider": "agoda", "subid": "KS-SP-02-STAY"}
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  var DATA = JSON.parse(document.getElementById("course-data").textContent);
+  var COURSES = DATA.courses;
+
+  var THEMES = [
+    { key: "all", label: "전체", note: "모든 회복 코스", icon: "✦" },
+    { key: "glow", label: "글로우케이션", note: "뷰티·스파", icon: "💆‍♀️" },
+    { key: "sleep", label: "슬립케이션", note: "숙면·딥슬립", icon: "🌙" },
+    { key: "spa", label: "K-스파케이션", note: "세신·도심회복", icon: "🛁" }
+  ];
+
+  var THEME_LABEL = { glow: "💆‍♀️ 글로우케이션", sleep: "🌙 슬립케이션", spa: "🛁 K-스파케이션" };
+  var THEME_BADGE = { glow: "theme-glow", sleep: "theme-sleep", spa: "theme-spa" };
+
+  var AREAS = [
+    { key: "all", label: "전체" },
+    { key: "myeongdong", label: "명동" },
+    { key: "gangnam", label: "강남·청담" },
+    { key: "yeouido", label: "여의도·용산" },
+    { key: "hongdae", label: "홍대" },
+    { key: "busan", label: "부산" },
+    { key: "sokcho", label: "속초·제주" }
+  ];
+
+  var PURPOSES = [
+    { key: "all", label: "전체" },
+    { key: "none", label: "당일 티 안 남", note: "헤드스파·세신" },
+    { key: "mild_redness", label: "반나절 붉은기", note: "진정·필링·모공" },
+    { key: "swelling_care", label: "2~3일 붓기 케어", note: "리프팅·집중" },
+    { key: "deep_sleep", label: "딥슬립·수면분석", note: "수면검사" },
+    { key: "aroma_sauna", label: "아로마·사우나 이완", note: "노천탕" }
+  ];
+
+  var PURPOSE_LABEL = {
+    none: "당일 티 안 남",
+    mild_redness: "반나절 붉은기",
+    swelling_care: "2~3일 붓기 케어",
+    deep_sleep: "딥슬립·수면분석",
+    aroma_sauna: "아로마·사우나 이완"
+  };
+
+  var PURPOSE_CLASS = {
+    none: "dt-none",
+    mild_redness: "dt-mild",
+    swelling_care: "dt-swell",
+    deep_sleep: "dt-sleep",
+    aroma_sauna: "dt-aroma"
+  };
+
+  var SPEC_CHIPS = [
+    { key: "contactless", label: "비대면 체크인", test: function (c) { return c.specs.contactless; } },
+    { key: "blackout", label: "100% 암막커튼", test: function (c) { return c.specs.blackout; } },
+    { key: "gentle", label: "저자극·가습기", test: function (c) { return c.specs.humidifier && c.specs.unscented; } },
+    { key: "freezer", label: "냉동칸(얼음찜질)", test: function (c) { return c.specs.freezer; } },
+    { key: "bath", label: "깊은 욕조·반신욕", test: function (c) { return c.specs.bath; } },
+    { key: "quiet4", label: "방음·정숙도 4+", test: function (c) { return c.specs.soundproof && c.specs.quiet >= 4; } },
+    { key: "bedding", label: "프리미엄 침구·모션베드", test: function (c) { return c.specs.bedding || c.specs.motionbed; } }
+  ];
+
+  var state = { theme: "all", area: "all", purpose: "all", chips: [] };
+
+  var el = {
+    themeTabs: document.getElementById("theme-tabs"),
+    areaTabs: document.getElementById("area-tabs"),
+    purposeTabs: document.getElementById("purpose-tabs"),
+    specChips: document.getElementById("spec-chips"),
+    grid: document.getElementById("course-grid"),
+    emptySlot: document.getElementById("empty-slot"),
+    count: document.getElementById("result-count"),
+    activeTags: document.getElementById("active-tags"),
+    reset: document.getElementById("reset-btn"),
+    overlay: document.getElementById("overlay"),
+    modal: document.getElementById("modal"),
+    toast: document.getElementById("toast"),
+    toastTitle: document.getElementById("toast-title"),
+    toastCode: document.getElementById("toast-code"),
+    toastSub: document.getElementById("toast-sub")
+  };
+
+  var ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+  var ICON_ALERT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>';
+  var ICON_ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
+  var ICON_CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+  var ICON_EXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>';
+  var ICON_FOOT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"></path><path d="M8 20V9a4 4 0 0 1 8 0v11"></path></svg>';
+
+  function won(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function themeCount(key) {
+    if (key === "all") return COURSES.length;
+    return COURSES.filter(function (c) { return c.theme === key; }).length;
+  }
+
+  /* ---------- filter tabs ---------- */
+  function buildThemeTabs() {
+    var html = "";
+    THEMES.forEach(function (t) {
+      var on = state.theme === t.key;
+      html += '<button type="button" class="theme-tab" data-theme="' + t.key + '" aria-pressed="' + on + '">' +
+        '<span class="tt-ico" aria-hidden="true">' + t.icon + "</span>" +
+        '<span class="tt-body"><b>' + esc(t.label) + "</b><em>" + esc(t.note) + "</em></span>" +
+        '<span class="tt-count">' + themeCount(t.key) + "</span>" +
+      "</button>";
+    });
+    el.themeTabs.innerHTML = html;
+  }
+
+  function buildAreaTabs() {
+    var html = "";
+    AREAS.forEach(function (a) {
+      html += '<button type="button" class="chip" data-area="' + a.key + '" aria-pressed="' + (state.area === a.key) + '">' + esc(a.label) + "</button>";
+    });
+    el.areaTabs.innerHTML = html;
+  }
+
+  function buildPurposeTabs() {
+    var html = "";
+    PURPOSES.forEach(function (d) {
+      var label = esc(d.label);
+      if (d.note) {
+        label += ' <span class="chip-note">' + esc(d.note) + "</span>";
+      }
+      html += '<button type="button" class="chip" data-purpose="' + d.key + '" aria-pressed="' + (state.purpose === d.key) + '">' + label + "</button>";
+    });
+    el.purposeTabs.innerHTML = html;
+  }
+
+  function buildSpecChips() {
+    var html = "";
+    SPEC_CHIPS.forEach(function (s) {
+      var on = state.chips.indexOf(s.key) !== -1;
+      html += '<button type="button" class="chip soft" data-chip="' + s.key + '" aria-pressed="' + on + '">' +
+        '<span class="tick">✓</span>' + esc(s.label) + "</button>";
+    });
+    el.specChips.innerHTML = html;
+  }
+
+  function syncPressed() {
+    Array.prototype.forEach.call(el.themeTabs.children, function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-theme") === state.theme));
+    });
+    Array.prototype.forEach.call(el.areaTabs.children, function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-area") === state.area));
+    });
+    Array.prototype.forEach.call(el.purposeTabs.children, function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-purpose") === state.purpose));
+    });
+    Array.prototype.forEach.call(el.specChips.children, function (b) {
+      b.setAttribute("aria-pressed", String(state.chips.indexOf(b.getAttribute("data-chip")) !== -1));
+    });
+  }
+
+  /* ---------- matching ---------- */
+  function matches(course) {
+    if (state.theme !== "all" && course.theme !== state.theme) return false;
+    if (state.area !== "all" && course.area !== state.area) return false;
+    if (state.purpose !== "all" && course.purpose !== state.purpose) return false;
+    for (var i = 0; i < state.chips.length; i += 1) {
+      var key = state.chips[i];
+      var chip = null;
+      for (var j = 0; j < SPEC_CHIPS.length; j += 1) {
+        if (SPEC_CHIPS[j].key === key) chip = SPEC_CHIPS[j];
+      }
+      if (!chip || !chip.test(course)) return false;
+    }
+    return true;
+  }
+
+  /* ---------- card ---------- */
+  function cardHTML(course) {
+    var badges = "";
+    for (var i = 0; i < course.badges.length; i += 1) {
+      badges += '<span class="spec">' + ICON_CHECK + esc(course.badges[i]) + "</span>";
+    }
+    var themeBadgeClass = THEME_BADGE[course.theme];
+    return '' +
+      '<button type="button" class="card" data-id="' + esc(course.id) + '" data-area="' + esc(course.area) + '" data-theme="' + esc(course.theme) + '" aria-label="' + esc(course.title) + ' 상세 동선 보기">' +
+        '<span class="card-visual">' +
+          '<span class="cv-top">' +
+            '<span class="cv-area">' + esc(course.areaLabel) + '</span>' +
+            '<span class="cv-code">' + esc(course.code) + '</span>' +
+          '</span>' +
+          '<span class="cv-foot">' +
+            '<span class="badge ' + themeBadgeClass + '">' + esc(THEME_LABEL[course.theme]) + '</span>' +
+            '<span class="badge ' + PURPOSE_CLASS[course.purpose] + '">' + esc(PURPOSE_LABEL[course.purpose]) + '</span>' +
+          '</span>' +
+        '</span>' +
+        '<span class="card-body">' +
+          '<span class="card-title">' + esc(course.title) + '</span>' +
+          '<span class="route">' +
+            '<span class="node"><span class="dot"></span><span class="place">' + esc(course.careName) + '</span></span>' +
+            '<span class="node walk-row"><span class="walk-pip"></span><span class="walk">도보 ' + course.walk + '분</span></span>' +
+            '<span class="node"><span class="dot stay"></span><span class="place">' + esc(course.stayName) + '</span></span>' +
+          '</span>' +
+          '<span class="spec-row">' + badges + '</span>' +
+          '<span class="cons-preview">' + ICON_ALERT + '<span>' + esc(course.cons[0]) + '</span></span>' +
+          '<span class="card-foot">' +
+            '<span class="price"><small>1박 예상</small><b>' + won(course.price) + '</b><em>' + esc(course.priceNote) + '</em></span>' +
+            '<span class="detail-hint">' + (course.theme === "sleep" ? "수면 동선" : (course.theme === "spa" ? "도심 회복 동선" : "상세 동선")) + ICON_ARROW + '</span>' +
+          '</span>' +
+        '</span>' +
+      '</button>';
+  }
+
+  function renderGrid() {
+    var list = COURSES.filter(matches);
+    var html = "";
+    for (var i = 0; i < list.length; i += 1) {
+      html += cardHTML(list[i]);
+    }
+    el.grid.innerHTML = html;
+
+    if (list.length === 0) {
+      var picked = [];
+      if (state.theme !== "all") picked.push(THEME_LABEL[state.theme]);
+      if (state.area !== "all") picked.push(areaLabel(state.area));
+      if (state.purpose !== "all") picked.push(PURPOSE_LABEL[state.purpose]);
+      for (var p = 0; p < state.chips.length; p += 1) picked.push(chipLabel(state.chips[p]));
+
+      var relaxed = COURSES.filter(function (c) {
+        if (state.theme !== "all" && c.theme !== state.theme) return false;
+        if (state.area !== "all" && c.area !== state.area) return false;
+        if (state.purpose !== "all" && c.purpose !== state.purpose) return false;
+        return true;
+      }).length;
+
+      var act = '<button type="button" class="chip" id="empty-reset">전체 필터 초기화</button>';
+      if (state.chips.length > 0 && relaxed > 0) {
+        act = '<button type="button" class="chip" id="empty-relax" style="background:var(--sage-tint);border-color:var(--sage);color:var(--sage-dark);font-weight:600">회복 조건 ' +
+          state.chips.length + '개만 해제하고 ' + relaxed + '개 코스 보기</button>' + act;
+      }
+
+      el.emptySlot.innerHTML =
+        '<div class="empty-state">' +
+          '<h3>이 조합에 맞는 코스는 아직 없습니다</h3>' +
+          '<p>선택한 조건(' + esc(picked.join(" · ")) + ')을 모두 만족하는 회복 숙소를 아직 확인하지 못했습니다. 조건을 하나만 풀어도 가장 가까운 대안 동선이 보입니다.</p>' +
+          '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">' + act + '</div>' +
+        '</div>';
+
+      var er = document.getElementById("empty-reset");
+      if (er) er.addEventListener("click", resetAll);
+      var ex = document.getElementById("empty-relax");
+      if (ex) ex.addEventListener("click", relaxChips);
+    } else {
+      el.emptySlot.innerHTML = "";
+    }
+
+    el.count.innerHTML = "<b>" + list.length + "</b>개 코스";
+    renderActiveTags();
+  }
+
+  function renderActiveTags() {
+    var tags = [];
+    if (state.theme !== "all") tags.push("테마 · " + THEME_LABEL[state.theme]);
+    if (state.area !== "all") {
+      for (var i = 0; i < AREAS.length; i += 1) {
+        if (AREAS[i].key === state.area) tags.push("지역 · " + AREAS[i].label);
+      }
+    }
+    if (state.purpose !== "all") tags.push("목적 · " + PURPOSE_LABEL[state.purpose]);
+    for (var j = 0; j < state.chips.length; j += 1) {
+      tags.push(chipLabel(state.chips[j]));
+    }
+    var html = "";
+    for (var t = 0; t < tags.length; t += 1) {
+      html += "<span>" + esc(tags[t]) + "</span>";
+    }
+    el.activeTags.innerHTML = html;
+  }
+
+  function resetAll() {
+    state.theme = "all";
+    state.area = "all";
+    state.purpose = "all";
+    state.chips = [];
+    syncPressed();
+    renderGrid();
+  }
+
+  function relaxChips() {
+    state.chips = [];
+    syncPressed();
+    renderGrid();
+  }
+
+  function areaLabel(key) {
+    for (var i = 0; i < AREAS.length; i += 1) {
+      if (AREAS[i].key === key) return AREAS[i].label;
+    }
+    return key;
+  }
+
+  function chipLabel(key) {
+    for (var i = 0; i < SPEC_CHIPS.length; i += 1) {
+      if (SPEC_CHIPS[i].key === key) return SPEC_CHIPS[i].label;
+    }
+    return key;
+  }
+
+  /* ---------- modal ---------- */
+  function specRow(label, yes, note) {
+    return '<div class="spec-tr"><span class="spec-l">' + esc(label) +
+        (note ? "<em>" + esc(note) + "</em>" : "") + "</span>" +
+        '<span class="val ' + (yes ? "yes" : "no") + '"><span class="ox">' + (yes ? "O" : "X") + "</span>" + (yes ? "가능" : "불가") + "</span></div>";
+  }
+
+  function soundRow(soundproof, score) {
+    var dots = "";
+    for (var i = 1; i <= 5; i += 1) {
+      dots += '<i class="' + (i <= Math.round(score) ? "on" : "") + '"></i>';
+    }
+    return '<div class="spec-tr"><span class="spec-l">방음(이중창·차음벽)<em>정숙도 ' + score.toFixed(1) + ' / 5.0</em></span>' +
+      '<span class="val ' + (soundproof ? "yes" : "no") + '"><span class="ox">' + (soundproof ? "O" : "X") + "</span>" +
+      (soundproof ? "방음" : "일반창") + '<b>' + score.toFixed(1) + '</b><span class="dots">' + dots + "</span></span></div>";
+  }
+
+  function timelineHTML(course) {
+    var html = "";
+    for (var i = 0; i < course.timeline.length; i += 1) {
+      var s = course.timeline[i];
+      var kindClass = s.kind === "care" ? "is-care" : (s.kind === "stay" ? "is-stay" : (s.kind === "walk" ? "is-walk" : "is-food"));
+      var num = s.kind === "walk" ? ICON_FOOT : String(i + 1);
+      html += '<li class="tl-item ' + kindClass + '">' +
+          '<span class="tl-num">' + num + '</span>' +
+          '<span class="tl-content">' +
+            '<span class="tl-time">' + esc(s.time) + '</span>' +
+            '<span class="tl-title">' + esc(s.title) + '</span>' +
+            '<span class="tl-desc">' + esc(s.desc) + '</span>' +
+          '</span>' +
+        '</li>';
+    }
+    return '<ol class="timeline">' + html + "</ol>";
+  }
+
+  function openModal(course) {
+    var specs = course.specs;
+    var cons = "";
+    for (var i = 0; i < course.cons.length; i += 1) {
+      cons += "<li>" + esc(course.cons[i]) + "</li>";
+    }
+
+    var themeBadge = THEME_BADGE[course.theme];
+
+    el.modal.setAttribute("data-theme", course.theme);
+    el.modal.innerHTML = '' +
+      '<button type="button" class="modal-close" id="modal-close" aria-label="상세 닫기">' + ICON_CLOSE + '</button>' +
+      '<div class="modal-scroll">' +
+      '<div class="modal-hero">' +
+        '<div class="badges">' +
+          '<span class="modal-badge ' + themeBadge + '">' + esc(THEME_LABEL[course.theme]) + '</span>' +
+          '<span class="modal-badge">' + esc(course.areaLabel) + '</span>' +
+          '<span class="modal-badge ' + PURPOSE_CLASS[course.purpose] + '">' + esc(PURPOSE_LABEL[course.purpose]) + '</span>' +
+          '<span class="modal-badge">' + esc(course.careType) + '</span>' +
+          '<span class="modal-badge">' + esc(course.code) + '</span>' +
+        '</div>' +
+        '<h2 id="modal-title">' + esc(course.title) + '</h2>' +
+        '<div class="modal-route">' +
+          '<b>' + esc(course.careName) + '</b>' +
+          '<span class="arrow">→</span>' +
+          '<span>도보 ' + course.walk + '분</span>' +
+          '<span class="arrow">→</span>' +
+          '<b>' + esc(course.stayName) + '</b>' +
+          '<span class="price-tail">1박 예상 ' + won(course.price) + ' · ' + esc(course.priceNote) + '</span>' +        '</div>' +
+      '</div>' +
+      '<div class="modal-body">' +
+        '<section class="section">' +
+          '<div class="section-title"><span>01</span><h3>4단계 회복 동선</h3></div>' +
+          timelineHTML(course) +
+          '<div class="nnotes">' +
+            '<div class="nnote"><b>' + esc(course.notes[0].label) + '</b><span>' + esc(course.notes[0].text) + '</span></div>' +
+            '<div class="nnote"><b>' + esc(course.notes[1].label) + '</b><span>' + esc(course.notes[1].text) + '</span></div>' +
+          '</div>' +
+        '</section>' +
+        '<section class="section">' +
+          '<div class="section-title"><span>02</span><h3>회복 숙소 스펙 검증표</h3></div>' +
+          '<div class="spec-table">' +
+            specRow("비대면 체크인", specs.contactless, "도어락 코드·셀프 입실") +
+            specRow("100% 암막커튼", specs.blackout, "측면 빛차단 레일 포함") +
+            soundRow(specs.soundproof, specs.quiet) +
+            specRow("가습기 구비", specs.humidifier, "객실 기본 세팅") +
+            specRow("저자극 무향 어메니티", specs.unscented, "향료·알코올 미포함") +
+            specRow("냉동칸(얼음찜질)", specs.freezer, "아이스팩 재사용") +
+            specRow("깊은 욕조·반신욕", specs.bath, "욕조 깊이 45cm 이상·온수 조절") +
+            specRow("프리미엄 침구 · 모션베드", specs.bedding || specs.motionbed, specs.motionbed ? "모션베드 구비" : "프리미엄 침구만") +
+            specRow("배달 픽업 편의", specs.delivery, "공용 로비 수령") +
+          '</div>' +
+          '<p class="spec-legend">O/X는 숙소 확인 기준이며, 정숙도는 5점 만점입니다. 계절·객실 타입에 따라 일부 항목이 달라질 수 있습니다.</p>' +
+        '</section>' +
+        '<section class="section">' +
+          '<div class="section-title"><span>03</span><h3>가기 전 꼭 확인할 단점 3가지</h3></div>' +
+          '<div class="warn-box">' +
+            '<h4>' + ICON_ALERT + '이 코스의 실제 단점</h4>' +
+            '<ul>' + cons + '</ul>' +
+          '</div>' +
+        '</section>' +
+      '</div>' +
+      '<div class="cta-bar">' +
+        '<button type="button" class="cta cta-care" data-go="care">' + ICON_EXT + '웰니스/스파 프로그램 보기</button>' +
+        '<button type="button" class="cta cta-stay" data-go="stay">' + ICON_EXT + '회복 숙소 예약하기</button>' +
+        '<div class="cta-note">예약은 제휴 채널에서 진행되며, 결제는 글로우케이션에서 이루어지지 않습니다.</div>' +
+      '</div>' +
+      '</div>';
+
+    el.overlay.classList.add("is-open");
+    document.body.classList.add("is-locked");
+    var closeBtn = document.getElementById("modal-close");
+    if (closeBtn) closeBtn.focus();
+    el.overlay.setAttribute("data-course", course.id);
+  }
+
+  function closeModal() {
+    el.overlay.classList.remove("is-open");
+    document.body.classList.remove("is-locked");
+    el.overlay.removeAttribute("data-course");
+    el.modal.innerHTML = "";
+    el.modal.removeAttribute("data-theme");
+  }
+
+  /* ---------- tracking simulation ---------- */
+  var toastTimer = null;
+  function simulateTracking(course, type) {
+    var conf = course.providers[type];
+    var targetType = type === "stay" ? "stay" : "care";
+    var label = type === "stay" ? "회복 숙소" : (course.theme === "sleep" ? "웰니스·수면 프로그램" : (course.theme === "spa" ? "세신·스크럽 프로그램" : "웰니스/스파 프로그램"));
+    var subid = conf.subid;
+
+    el.toastTitle.textContent = "제휴 트래킹 기록 완료 · " + label;
+    el.toastCode.textContent = "POST /api/go?type=" + targetType + "&id=" + course.id + "&provider=" + conf.provider + "&subid=" + subid + "  →302";
+    el.toastSub.textContent = "click_logs 기록 후 " + conf.provider + " 제휴 페이지로 이동하는 시뮬레이션입니다. 실제 시안에서는 외부로 이동하지 않습니다.";
+    el.toast.classList.add("show");
+    if (toastTimer) window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(function () {
+      el.toast.classList.remove("show");
+    }, 5200);
+  }
+
+  /* ---------- events ---------- */
+  el.themeTabs.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-theme]");
+    if (!btn) return;
+    state.theme = btn.getAttribute("data-theme");
+    syncPressed();
+    renderGrid();
+  });
+
+  el.areaTabs.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-area]");
+    if (!btn) return;
+    state.area = btn.getAttribute("data-area");
+    syncPressed();
+    renderGrid();
+  });
+
+  el.purposeTabs.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-purpose]");
+    if (!btn) return;
+    state.purpose = btn.getAttribute("data-purpose");
+    syncPressed();
+    renderGrid();
+  });
+
+  el.specChips.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-chip]");
+    if (!btn) return;
+    var key = btn.getAttribute("data-chip");
+    var idx = state.chips.indexOf(key);
+    if (idx === -1) {
+      state.chips.push(key);
+    } else {
+      state.chips.splice(idx, 1);
+    }
+    syncPressed();
+    renderGrid();
+  });
+
+  el.reset.addEventListener("click", resetAll);
+
+  el.grid.addEventListener("click", function (e) {
+    var card = e.target.closest(".card");
+    if (!card) return;
+    var id = card.getAttribute("data-id");
+    for (var i = 0; i < COURSES.length; i += 1) {
+      if (COURSES[i].id === id) {
+        openModal(COURSES[i]);
+        return;
+      }
+    }
+  });
+
+  el.modal.addEventListener("click", function (e) {
+    if (e.target.closest("#modal-close")) {
+      closeModal();
+      return;
+    }
+    var go = e.target.closest("[data-go]");
+    if (!go) return;
+    var id = el.overlay.getAttribute("data-course");
+    var type = go.getAttribute("data-go");
+    for (var i = 0; i < COURSES.length; i += 1) {
+      if (COURSES[i].id === id) {
+        simulateTracking(COURSES[i], type);
+        return;
+      }
+    }
+  });
+
+  el.overlay.addEventListener("click", function (e) {
+    if (e.target === el.overlay) closeModal();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && el.overlay.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+
+  /* ---------- init ---------- */
+  buildThemeTabs();
+  buildAreaTabs();
+  buildPurposeTabs();
+  buildSpecChips();
+  renderGrid();
+})();
+</script>
+</body>
+</html>
