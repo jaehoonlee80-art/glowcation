@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>글로우케이션 + 슬립케이션 — 피부 관리부터 깊은 숙면까지</title>
 <meta name="description" content="K-뷰티·스파 관리부터 숙면·딥슬립 스테이까지, 회복 목적에 맞는 웰니스 동선과 검증된 회복 숙소를 한 번에 비교하는 1차 MVP 확장 시안">
+<link rel="preload" as="image" href="assets/img/hero-performance.jpg" fetchpriority="high">
 <style>
   :root{
     --ivory:#FAF8F3;
@@ -560,6 +561,147 @@
   }
   .toast .t-sub{font-size:11.5px;color:#AEB6BD;margin-top:6px}
 
+  /* ---------- editorial photography (실사 이미지 레이어) ---------- */
+  .hero{padding:46px 0 42px}
+  .hero-inner{max-width:none}
+  .hero-grid{
+    display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);
+    gap:44px;align-items:center;position:relative;z-index:1;
+  }
+  .hero-copy{min-width:0}
+  .hero-copy h1{font-size:clamp(26px,3.3vw,43px);margin-top:16px}
+  .hero-copy .hero-sub{font-size:clamp(14px,1.15vw,15.5px);margin-top:18px;max-width:560px}
+  .hero-copy .hero-stats{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:24px;max-width:none;border-top:1px solid var(--line-soft);padding-top:16px}
+  .hero-copy .hero-stat{padding:0 16px 0 0;border-right:0}
+  .hero-copy .hero-stat:nth-child(n+3){padding-top:12px}
+  .hero-visual{min-width:0;display:flex;flex-direction:column;gap:12px}
+  .hero-shot{
+    position:relative;margin:0;border-radius:20px;overflow:hidden;background:#232A38;
+    box-shadow:var(--shadow-lift);border:1px solid rgba(23,32,44,.10);
+  }
+  .hero-shot img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
+  .hero-shot::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(9,14,22,.20) 0%,rgba(9,14,22,0) 36%,rgba(9,14,22,.74) 100%);
+  }
+  .hero-shot-tag{
+    position:absolute;top:13px;left:13px;z-index:2;display:inline-flex;align-items:center;gap:7px;
+    font-size:11.5px;font-weight:600;letter-spacing:.02em;color:#FBF8F0;
+    background:rgba(16,22,31,.55);border:1px solid rgba(255,255,255,.26);border-radius:999px;
+    padding:6px 12px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  }
+  .hero-shot-tag b{font-family:var(--serif);font-size:13.5px;letter-spacing:0}
+  .hero-shot-tag i{font-style:normal;width:1px;height:11px;background:rgba(255,255,255,.34)}
+  .hero-shot-cap{
+    position:absolute;left:16px;right:16px;bottom:13px;z-index:2;
+    color:#F7F3E9;font-size:11.8px;line-height:1.55;letter-spacing:-.005em;
+    text-shadow:0 1px 10px rgba(5,9,15,.6);
+  }
+  .hero-shot-cap b{color:#F1DFBB;font-weight:600}
+
+  /* OTA 대비 4단계 퍼포먼스 패널 */
+  .hero-compare{
+    display:grid;grid-template-columns:minmax(0,1fr) 20px minmax(0,1.08fr);gap:6px;align-items:stretch;
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:11px 13px;
+    box-shadow:var(--shadow);
+  }
+  .hc-col{min-width:0;display:flex;flex-direction:column}
+  .hc-h{display:block;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .hc-old ul{display:flex;flex-direction:column;gap:3px}
+  .hc-old li{position:relative;padding-left:12px;font-size:11.3px;line-height:1.5;color:#8C8375}
+  .hc-old li::before{content:"✕";position:absolute;left:0;top:0;font-size:9px;line-height:1.9;color:#B57C5E}
+  .hc-time{display:block;margin-top:auto;padding-top:7px;font-size:10.2px;color:var(--muted);letter-spacing:.01em}
+  .hc-arrow{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:14px;line-height:1}
+  .hc-new{background:linear-gradient(180deg,#F0F3E7,#FAF8F3);border:1px solid rgba(123,142,114,.30);border-radius:11px;padding:8px 9px 9px;margin:-3px -3px -3px 0}
+  .hc-new .hc-h{color:var(--sage-dark)}
+  .hc-steps{display:flex;flex-wrap:wrap;gap:4px}
+  .hc-steps li{
+    display:inline-flex;align-items:center;gap:4px;font-size:10.6px;font-weight:600;line-height:1.3;
+    color:var(--sage-dark);background:rgba(255,253,249,.94);border:1px solid rgba(123,142,114,.26);
+    border-radius:999px;padding:3px 8px 3px 4px;
+  }
+  .hc-steps li i{
+    font-style:normal;font-family:var(--mono);font-size:8.5px;font-weight:700;color:#fff;background:var(--sage);
+    width:14px;height:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:none;
+  }
+  .hc-new .hc-time{color:var(--sage-dark);font-weight:600}
+
+  /* 카드 상단 16:10 실사 사진 */
+  .card-visual{
+    height:auto;aspect-ratio:16/10;padding:12px 14px;justify-content:space-between;
+    background:#242B3A;border-bottom:1px solid rgba(23,32,44,.10);isolation:isolate;
+  }
+  .card-visual::before{display:none}
+  .cv-img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+    transition:transform .45s cubic-bezier(.2,.6,.2,1);
+  }
+  .card:hover .cv-img{transform:scale(1.04)}
+  .cv-shade{
+    position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(8,13,20,.44) 0%,rgba(8,13,20,.04) 34%,rgba(8,13,20,.70) 100%);
+  }
+  .cv-top,.cv-foot{position:relative;z-index:1}
+  .cv-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .cv-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:8px}
+  .cv-area{color:#FFFAF0;font-size:21.5px;letter-spacing:-.02em;text-shadow:0 1px 16px rgba(4,8,14,.62)}
+  .card[data-theme="sleep"] .cv-area{color:#FBF9F1}
+  .card-visual .badge{
+    background:rgba(255,253,249,.94);border-color:rgba(23,32,44,.08);color:var(--ink-soft);
+    box-shadow:0 1px 4px rgba(8,13,20,.22);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  }
+  .card-visual .badge.theme-glow{color:var(--sage-dark)}
+  .card-visual .badge.theme-sleep{background:rgba(41,46,78,.9);border-color:rgba(255,255,255,.28);color:#F3F1FA}
+  .card-visual .badge.theme-spa{color:#7C5C3C}
+  .card-visual .badge.dt-none{background:rgba(238,241,231,.96);color:var(--sage-dark)}
+  .card-visual .badge.dt-mild{background:rgba(250,244,230,.96);color:#87693A}
+  .card-visual .badge.dt-swell{background:rgba(251,241,234,.96);color:var(--warn)}
+  .card-visual .badge.dt-sleep{background:rgba(236,237,246,.96);color:#3B4270}
+  .card-visual .badge.dt-aroma{background:rgba(230,240,237,.96);color:#3B675F}
+  .cv-walk{
+    display:inline-flex;align-items:center;gap:5px;flex:none;white-space:nowrap;
+    font-size:11px;font-weight:600;letter-spacing:.02em;color:#FFFDF7;
+    background:rgba(13,19,27,.62);border:1px solid rgba(255,255,255,.30);border-radius:999px;
+    padding:4px 9px 4px 7px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  }
+  .cv-walk svg{width:11px;height:11px;opacity:.92}
+
+  /* 모달 상단 대표 이미지 + 4단계 연결 */
+  .modal-photo{position:relative;margin:0;background:#1F2531;overflow:hidden}
+  .modal-photo img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;max-height:330px}
+  .modal-photo::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(7,12,19,.36) 0%,rgba(7,12,19,0) 40%,rgba(7,12,19,.76) 100%);
+  }
+  .mp-code{
+    position:absolute;top:13px;left:16px;z-index:2;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+    color:#F7F4EC;background:rgba(13,19,27,.58);border:1px solid rgba(255,255,255,.26);border-radius:999px;
+    padding:5px 10px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  }
+  .mp-steps{position:absolute;left:15px;right:15px;bottom:12px;z-index:2;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+  .mp-step{
+    display:inline-flex;align-items:center;gap:5px;font-size:10.4px;color:#F8F5EC;white-space:nowrap;
+    background:rgba(13,19,27,.58);border:1px solid rgba(255,255,255,.26);border-radius:999px;
+    padding:4px 9px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  }
+  .mp-step b{font-family:var(--mono);font-size:9.3px;font-weight:700;letter-spacing:.04em;color:#F0DDB6}
+  .mp-step-arrow{color:rgba(255,255,255,.66);font-size:9.5px;line-height:1}
+  .modal-hero{padding-top:22px;border-top:0}
+  .modal[data-theme="sleep"] .modal-hero{background:linear-gradient(180deg,#F1F2F9,rgba(250,248,243,0) 92%)}
+  .modal[data-theme="spa"] .modal-hero{background:linear-gradient(180deg,#F7F0E5,rgba(250,248,243,0) 92%)}
+
+  @media (max-width:1099px){
+    .hero-grid{grid-template-columns:1fr;gap:28px}
+    .hero-copy h1{font-size:clamp(26px,4.2vw,40px)}
+    .hero-copy .hero-sub{max-width:640px}
+    .hero-visual{max-width:660px}
+    .hero-copy .hero-stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .hero-copy .hero-stat{padding:0 14px 0 0;border-right:1px solid var(--line-soft)}
+    .hero-copy .hero-stat:nth-child(2n){border-right:1px solid var(--line-soft)}
+    .hero-copy .hero-stat:last-child{border-right:0;padding-right:0}
+    .hero-copy .hero-stat:nth-child(n+3){padding-top:0}
+  }
+
   @media (max-width:959px){
     .header-nav{display:none}
     .theme-opts{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
@@ -616,6 +758,37 @@
     .modal h2{padding-right:28px}
     .purpose-sec{padding-top:34px}
   }
+  /* ---------- photography: small screens ---------- */
+  @media (max-width:860px){
+    .hero-copy .hero-stats{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:14px}
+    .hero-copy .hero-stat{padding:0 14px 0 0;border-right:0}
+    .hero-copy .hero-stat:nth-child(2n){border-right:0}
+    .hero-copy .hero-stat:nth-child(n+3){padding-top:12px}
+  }
+  @media (max-width:720px){
+    .hero{padding:30px 0 22px}
+    .hero-grid{gap:22px}
+    .hero-copy h1{margin-top:12px}
+    .hero-shot{border-radius:16px}
+    .hero-shot-tag{top:10px;left:10px;padding:5px 10px;font-size:10.5px}
+    .hero-shot-tag b{font-size:12.5px}
+    .hero-shot-cap{left:12px;right:12px;bottom:10px;font-size:10.8px;line-height:1.5}
+    .hero-compare{grid-template-columns:1fr;padding:10px 11px;gap:7px}
+    .hc-arrow{justify-content:center;height:auto;overflow:visible;font-size:0;transform:none}
+    .hc-arrow::before{content:"↓";font-size:12px;color:var(--gold);line-height:1}
+    .hc-new{margin:0;padding:8px 9px}
+    .hc-old li{font-size:10.8px}
+    .hc-time{font-size:9.8px;padding-top:5px}
+    .hc-steps li{font-size:10px;padding:3px 7px 3px 4px}
+    .card-visual{height:auto;aspect-ratio:16/10;padding:11px 12px}
+    .cv-area{font-size:20px}
+    .modal-photo img{aspect-ratio:4/3;max-height:250px}
+    .mp-code{top:10px;left:12px;font-size:9.6px;padding:4px 8px}
+    .mp-steps{left:11px;right:11px;bottom:9px;gap:3px}
+    .mp-step{font-size:9.6px;padding:3px 7px}
+    .mp-step b{font-size:8.8px}
+    .modal-hero{padding-top:18px}
+  }
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
   }
@@ -640,20 +813,57 @@
 
 <main>
   <section class="hero">
-    <div class="wrap hero-inner">
-      <p class="eyebrow">Glowcation × Sleepcation × K-Spacation</p>
-      <h1>피부 관리부터 <span class="hl night">깊은 숙면</span>, <span class="nw">도심 K-스파</span>까지 <span class="dash">—</span> <span class="nw">내 회복 목적에 맞는</span> <span class="nw">웰니스 동선</span>과 <span class="nw">검증된 숙소</span>를 한 번에</h1>
-      <p class="hero-sub">
-        헤드스파·세신·에스테틱을 마친 뒤 붓기를 식힐 회복 숙소부터,
-        수면 측정·아로마·노천탕 뒤 100% 암막으로 깊이 잠들 슬립 스테이,
-        을지로·한남의 1인 세신·전통 스크럽 뒤 깊은 욕조에 몸을 담그는 도심 회복까지.
-        숙소의 회복 스펙은 O/X로 미리 검증하고, 단점은 숨기지 않고 먼저 보여드립니다.
-      </p>
-      <div class="hero-stats">
-        <div class="hero-stat"><b>12</b><span>검증된 회복 동선 코스</span></div>
-        <div class="hero-stat"><b>3</b><span>회복 테마 · 뷰티·숙면·K-스파</span></div>
-        <div class="hero-stat"><b>6</b><span>지역 · 서울 4 · 부산 · 속초·제주</span></div>
-        <div class="hero-stat"><b>9</b><span>회복 숙소 스펙 검증 항목</span></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Glowcation × Sleepcation × K-Spacation</p>
+        <h1>피부 관리부터 <span class="hl night">깊은 숙면</span>, <span class="nw">도심 K-스파</span>까지 <span class="dash">—</span> <span class="nw">내 회복 목적에 맞는</span> <span class="nw">웰니스 동선</span>과 <span class="nw">검증된 숙소</span>를 <span class="nw">한 번에</span></h1>
+        <p class="hero-sub">
+          헤드스파·세신·에스테틱을 마친 뒤 붓기를 식힐 회복 숙소부터,
+          수면 측정·아로마·노천탕 뒤 100% 암막으로 깊이 잠들 슬립 스테이,
+          을지로·한남의 1인 세신·전통 스크럽 뒤 깊은 욕조에 몸을 담그는 도심 회복까지.
+          숙소의 회복 스펙은 O/X로 미리 검증하고, 단점은 숨기지 않고 먼저 보여드립니다.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>12</b><span>검증된 회복 동선 코스</span></div>
+          <div class="hero-stat"><b>3</b><span>회복 테마 · 뷰티·숙면·K-스파</span></div>
+          <div class="hero-stat"><b>6</b><span>지역 · 서울 4 · 부산 · 속초·제주</span></div>
+          <div class="hero-stat"><b>9</b><span>회복 숙소 스펙 검증 항목</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <figure class="hero-shot">
+          <img src="assets/img/hero-performance.jpg" width="1600" height="1000"
+               alt="관리 직후 100% 암막커튼을 닫고, 깊은 욕조가 있는 회복 숙소에서 쉬기 직전의 모습"
+               fetchpriority="high" decoding="async">
+          <span class="hero-shot-tag"><b>도보 5분</b><i></i>관리실 → 회복 숙소</span>
+          <figcaption class="hero-shot-cap">
+            관리 직후 그대로 들어가는 방 — <b>100% 암막 · 깊은 욕조 · 냉동칸</b>까지 확인된 숙소만 담았습니다.
+          </figcaption>
+        </figure>
+
+        <div class="hero-compare" aria-label="기존 OTA 검색과 회복 동선 3초 필터 비교">
+          <div class="hc-col hc-old">
+            <b class="hc-h">기존 OTA 검색</b>
+            <ul>
+              <li>도보 거리 알 수 없음</li>
+              <li>암막·욕조 확인 불가</li>
+              <li>리뷰 수백 개 뒤에 발견</li>
+            </ul>
+            <span class="hc-time">검색 20~40분 · 탭 12개</span>
+          </div>
+          <div class="hc-arrow" aria-hidden="true">→</div>
+          <div class="hc-col hc-new">
+            <b class="hc-h">회복 동선 3초 필터</b>
+            <ol class="hc-steps">
+              <li><i>1</i>테마</li>
+              <li><i>2</i>지역</li>
+              <li><i>3</i>회복 목적</li>
+              <li><i>4</i>숙소 조건</li>
+            </ol>
+            <span class="hc-time">12개 코스 · 스펙 O/X 즉시 비교</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1530,7 +1740,17 @@
   }
 
   /* ---------- card ---------- */
-  function cardHTML(course) {
+  function courseImg(course) {
+    return "assets/img/" + course.id + ".jpg";
+  }
+
+  function courseAlt(course) {
+    return course.areaLabel + " " + course.careType + " 후 회복 숙소 — " + course.stayName;
+  }
+
+  var STEP_LABEL = { care: "관리", walk: "이동", stay: "체크인", food: "식사" };
+
+  function cardHTML(course, index) {
     var badges = "";
     for (var i = 0; i < course.badges.length; i += 1) {
       badges += '<span class="spec">' + ICON_CHECK + esc(course.badges[i]) + "</span>";
@@ -1539,12 +1759,15 @@
     return '' +
       '<button type="button" class="card" data-id="' + esc(course.id) + '" data-area="' + esc(course.area) + '" data-theme="' + esc(course.theme) + '" aria-label="' + esc(course.title) + ' 상세 동선 보기">' +
         '<span class="card-visual">' +
+          '<img class="cv-img" src="' + courseImg(course) + '" alt="' + esc(courseAlt(course)) +
+            '" width="1000" height="625" loading="' + (index < 4 ? "eager" : "lazy") + '" decoding="async">' +
+          '<span class="cv-shade" aria-hidden="true"></span>' +
           '<span class="cv-top">' +
-            '<span class="cv-area">' + esc(course.areaLabel) + '</span>' +
-            '<span class="cv-code">' + esc(course.code) + '</span>' +
+            '<span class="badge ' + themeBadgeClass + '">' + esc(THEME_LABEL[course.theme]) + '</span>' +
+            '<span class="cv-walk">' + ICON_FOOT + '도보 ' + course.walk + '분</span>' +
           '</span>' +
           '<span class="cv-foot">' +
-            '<span class="badge ' + themeBadgeClass + '">' + esc(THEME_LABEL[course.theme]) + '</span>' +
+            '<span class="cv-area">' + esc(course.areaLabel) + '</span>' +
             '<span class="badge ' + PURPOSE_CLASS[course.purpose] + '">' + esc(PURPOSE_LABEL[course.purpose]) + '</span>' +
           '</span>' +
         '</span>' +
@@ -1569,7 +1792,7 @@
     var list = COURSES.filter(matches);
     var html = "";
     for (var i = 0; i < list.length; i += 1) {
-      html += cardHTML(list[i]);
+      html += cardHTML(list[i], i);
     }
     el.grid.innerHTML = html;
 
@@ -1695,6 +1918,16 @@
     return '<ol class="timeline">' + html + "</ol>";
   }
 
+  function modalStepsHTML(course) {
+    var html = "";
+    for (var i = 0; i < course.timeline.length; i += 1) {
+      var s = course.timeline[i];
+      html += '<span class="mp-step"><b>' + esc(s.time) + '</b>' + esc(STEP_LABEL[s.kind] || s.title) + '</span>';
+      if (i < course.timeline.length - 1) html += '<span class="mp-step-arrow" aria-hidden="true">›</span>';
+    }
+    return html;
+  }
+
   function openModal(course) {
     var specs = course.specs;
     var cons = "";
@@ -1708,6 +1941,11 @@
     el.modal.innerHTML = '' +
       '<button type="button" class="modal-close" id="modal-close" aria-label="상세 닫기">' + ICON_CLOSE + '</button>' +
       '<div class="modal-scroll">' +
+      '<figure class="modal-photo">' +
+        '<img src="' + courseImg(course) + '" alt="' + esc(courseAlt(course)) + '" width="1000" height="625" decoding="async">' +
+        '<span class="mp-code">' + esc(course.code) + ' · ' + esc(course.areaLabel) + '</span>' +
+        '<span class="mp-steps" aria-label="4단계 회복 동선 요약">' + modalStepsHTML(course) + '</span>' +
+      '</figure>' +
       '<div class="modal-hero">' +
         '<div class="badges">' +
           '<span class="modal-badge ' + themeBadge + '">' + esc(THEME_LABEL[course.theme]) + '</span>' +
